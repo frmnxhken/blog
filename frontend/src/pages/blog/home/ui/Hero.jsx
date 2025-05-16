@@ -9,29 +9,31 @@ import { LIST_ARTICLE } from "@/shared/data";
 
 const Hero = () => {
   return (
-    <div className="container max-w-[1200px] mx-auto px-4 py-32">
-      <div className="w-2/3">
-        <h1 className="text-white font-semibold text-7xl">
-          Upgrade Your Knowledge In The Future
-        </h1>
-      </div>
-      <div className="mt-12">
-        <Swiper
-          slidesPerView={"auto"}
-          spaceBetween={30}
-          grabCursor={true}
-          pagination={{
-            clickable: true,
-          }}
-          modules={[Pagination]}
-          className="mySwiper"
-        >
-          {LIST_ARTICLE.slice(0, 3).map((article, index) => (
-            <SwiperSlide>
-              <ListCard key={index} {...article} />
-            </SwiperSlide>
-          ))}
-        </Swiper>
+    <div className="bg-zinc-950">
+      <div className="container max-w-[1200px] mx-auto px-4 py-32">
+        <div className="w-2/3">
+          <h1 className="text-white font-semibold text-7xl">
+            Upgrade Your Knowledge In The Future
+          </h1>
+        </div>
+        <div className="mt-12">
+          <Swiper
+            slidesPerView={"auto"}
+            spaceBetween={30}
+            grabCursor={true}
+            pagination={{
+              clickable: true,
+            }}
+            modules={[Pagination]}
+            className="mySwiper"
+          >
+            {LIST_ARTICLE.slice(0, 3).map((article, index) => (
+              <SwiperSlide>
+                <ListCard key={index} {...article} />
+              </SwiperSlide>
+            ))}
+          </Swiper>
+        </div>
       </div>
     </div>
   );
