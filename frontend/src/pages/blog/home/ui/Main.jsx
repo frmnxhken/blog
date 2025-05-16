@@ -5,7 +5,7 @@ import Button from "@/shared/ui/Button";
 
 const Main = () => {
   return (
-    <div className="bg-white w-full rounded-t-3xl">
+    <div className="bg-white w-full rounded-t-3xl rounded-b-3xl">
       <div className="container max-w-[1200px] mx-auto px-4 py-24">
         <div className="flex justify-between items-end-safe">
           <h1 className="text-6xl font-semibold w-3/4">

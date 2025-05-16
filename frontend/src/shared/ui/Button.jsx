@@ -13,7 +13,7 @@ const Button = ({
     primary: "bg-zinc-800 text-white hover:bg-zinc-700",
     secondary:
       "bg-transparent border border-black text-black hover:bg-zinc-800 hover:text-white",
-    light: "bg-white text-black border border-white hover:bg-zinc-300",
+    light: "text-black bg-white border border-white hover:bg-zinc-300",
   };
 
   return (
