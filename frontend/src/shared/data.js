@@ -35,3 +35,12 @@ export const LIST_ARTICLE = [
     thumbnail: "/images/article/5.png",
   },
 ];
+
+export const LIST_CATEGORY = [
+  "Design UI",
+  "Programming",
+  "Tips & Trick",
+  "Information",
+  "Web",
+  "Mobile",
+];
