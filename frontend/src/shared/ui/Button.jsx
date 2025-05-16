@@ -1,0 +1,29 @@
+import React from "react";
+
+const Button = ({
+  children,
+  variant = "primary",
+  className = "",
+  ...props
+}) => {
+  const baseButton =
+    "px-4 py-2 cursor-pointer rounded font-medium transition-colors duration-200";
+
+  const variants = {
+    primary: "bg-zinc-800 text-white hover:bg-zinc-700",
+    secondary:
+      "bg-transparent border border-black text-black hover:bg-zinc-800 hover:text-white",
+    light: "bg-white text-black border border-white hover:bg-zinc-300",
+  };
+
+  return (
+    <button
+      className={`${baseButton}${variants[variant]} ${className}`}
+      {...props}
+    >
+      {children}
+    </button>
+  );
+};
+
+export default Button;

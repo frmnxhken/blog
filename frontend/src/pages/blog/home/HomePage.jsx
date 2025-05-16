@@ -1,12 +1,14 @@
-import React from 'react'
-import Hero from './ui/Hero'
+import React from "react";
+import Hero from "./ui/Hero";
+import Main from "./ui/Main";
 
 const HomePage = () => {
   return (
     <>
-        <Hero/>
+      <Hero />
+      <Main />
     </>
-  )
-}
+  );
+};
 
-export default HomePage 
+export default HomePage;

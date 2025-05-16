@@ -25,11 +25,13 @@ export const LIST_ARTICLE = [
     description:
       "An introductory article about React.js and why this framework is widely used in modern web development.",
     date: "2025 May 30",
+    thumbnail: "/images/article/4.png",
   },
   {
     title: "7 Common Programming Mistakes to Avoid",
     description:
       "Identify frequent mistakes made by beginner programmers and how to avoid them.",
     date: "2025 May 12",
+    thumbnail: "/images/article/5.png",
   },
 ];
