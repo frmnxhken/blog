@@ -6,10 +6,12 @@ import {
   HiOutlineUserCircle,
 } from "react-icons/hi2";
 
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 
 const Sidebar = () => {
-  const active = "article";
+  const location = useLocation();
+  const currentLocation = location.pathname;
+
   const navigations = [
     {
       title: "Dashboard",
@@ -17,12 +19,12 @@ const Sidebar = () => {
         {
           label: "Articles",
           icon: <HiOutlineDocument size={18} />,
-          to: "article",
+          to: "/dashboard/article",
         },
         {
           label: "Write",
           icon: <HiOutlinePencilSquare size={18} />,
-          to: "write",
+          to: "/dashboard/write",
         },
       ],
     },
@@ -32,19 +34,19 @@ const Sidebar = () => {
         {
           label: "Edit Profile",
           icon: <HiOutlineUserCircle size={18} />,
-          to: "profile",
+          to: "/dashboard/profile",
         },
         {
           label: "Change Password",
           icon: <HiOutlineKey size={18} />,
-          to: "password",
+          to: "/dashboard/password",
         },
       ],
     },
   ];
 
   return (
-    <div className="bg-white min-h-screen border-r border-zinc-200">
+    <div className="bg-white min-h-screen border-r border-zinc-200 sticky top-0">
       <div className="container py-6">
         {navigations.map((section, index) => (
           <div key={index} className={index > 0 ? "mt-12" : ""}>
@@ -54,7 +56,7 @@ const Sidebar = () => {
                 <li
                   key={idx}
                   className={`flex items-center gap-x-4 p-3 ${
-                    item.to === active
+                    item.to === currentLocation
                       ? "bg-zinc-100 border-r-2 border-zinc-800"
                       : ""
                   }`}
