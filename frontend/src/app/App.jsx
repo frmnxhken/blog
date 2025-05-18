@@ -7,6 +7,9 @@ import ArticleDetailPage from "@/pages/blog/article/ArticleDetailPage";
 import DashboardLayout from "./layout/DashboardLayout";
 import DashboardPage from "@/pages/dashboard/home/HomePage";
 import ArticleManagePage from "@/pages/dashboard/article/ArticleManagePage";
+import EditProfilePage from "@/pages/dashboard/profile/EditProfilePage";
+import ChangePasswordPage from "@/pages/dashboard/password/ChangePasswordPage";
+import WriteArticlePage from "@/pages/dashboard/article/WriteArticlePage";
 
 const App = () => {
   return (
@@ -20,6 +23,9 @@ const App = () => {
         <Route path="/dashboard" element={<DashboardLayout />}>
           <Route index element={<DashboardPage />} />
           <Route path="article" element={<ArticleManagePage />} />
+          <Route path="write" element={<WriteArticlePage />} />
+          <Route path="profile" element={<EditProfilePage />} />
+          <Route path="password" element={<ChangePasswordPage />} />
         </Route>
       </Routes>
     </BrowserRouter>

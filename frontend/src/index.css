@@ -2,7 +2,33 @@
 @import "tailwindcss";
 @plugin "@tailwindcss/typography";
 
+@layer base {}
 
 body {
     font-family: 'Inter', sans-serif;
+}
+
+h1.ce-header {
+    @apply text-3xl font-bold my-4;
+}
+
+h2.ce-header {
+    @apply text-2xl font-semibold my-3;
+}
+
+h3.ce-header {
+    @apply text-xl font-medium my-2;
+}
+
+h4.ce-header {
+    @apply text-lg font-medium my-2;
+}
+
+::-webkit-scrollbar {
+    display: none;
+}
+
+.ce-block__content,
+.ce-toolbar__content {
+    max-width: 85%;
 }
