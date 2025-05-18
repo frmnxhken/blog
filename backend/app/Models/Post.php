@@ -6,5 +6,14 @@ use Illuminate\Database\Eloquent\Model;
 
 class Post extends Model
 {
-    //
+    protected $guarded = ['id'];
+    public function tags()
+    {
+        return $this->belongsToMany(Tag::class);
+    }
+
+    public function images()
+    {
+        return $this->hasMany(PostImage::class);
+    }
 }
