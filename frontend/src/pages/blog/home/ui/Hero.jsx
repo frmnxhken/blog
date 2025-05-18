@@ -11,7 +11,7 @@ const Hero = () => {
   return (
     <div className="container max-w-[1200px] mx-auto px-4 py-32">
       <div className="w-2/3">
-        <h1 className="font-semibold text-7xl">
+        <h1 className="font-semibold text-4xl sm:text-7xl">
           Upgrade Your Knowledge In The Future
         </h1>
       </div>

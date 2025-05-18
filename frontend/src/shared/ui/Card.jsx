@@ -9,8 +9,8 @@ const Card = ({ title, thumbnail, date }) => {
         alt="thumbnail"
         className="aspect-video object-cover rounded-md"
       />
-      <div className="flex flex-col justify-between p-6 min-h-[250px]">
-        <h3 className="text-2xl font-semibold">{title}</h3>
+      <div className="flex flex-col justify-between p-2 sm:p-6 min-h-[200px] sm:min-h-[250px]">
+        <h3 className="text-lg sm:text-2xl font-semibold">{title}</h3>
         <div className="flex justify-between items-center">
           <p className="text-sm text-zinc-500">{date}</p>
           <HiArrowUpRight className="cursor-pointer" size={24} />

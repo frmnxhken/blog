@@ -1,8 +1,12 @@
 <?php
 
-use Illuminate\Http\Request;
+use App\Http\Controllers\API\PostController;
+use App\Http\Controllers\API\PostImageController;
+use App\Http\Controllers\API\UserController;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/user', function (Request $request) {
-    return $request->user();
-})->middleware('auth:sanctum');
+Route::post('/auth', [UserController::class, 'authentication'])->name('login');
+Route::post('/deauth', [UserController::class, 'deAuthentication'])->name('logout');
+
+Route::apiResource('/post', PostController::class);
+Route::post('/upload/image', [PostImageController::class, 'uploadImage']);
