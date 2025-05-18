@@ -1,6 +1,6 @@
+import React from "react";
 import Button from "@/shared/ui/Button";
 import Input from "@/shared/ui/Input";
-import React from "react";
 
 const ChangePasswordPage = () => {
   return (

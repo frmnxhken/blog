@@ -10,6 +10,7 @@ import ArticleManagePage from "@/pages/dashboard/article/ArticleManagePage";
 import EditProfilePage from "@/pages/dashboard/profile/EditProfilePage";
 import ChangePasswordPage from "@/pages/dashboard/password/ChangePasswordPage";
 import WriteArticlePage from "@/pages/dashboard/article/WriteArticlePage";
+import LoginPage from "@/pages/dashboard/auth/LoginPage";
 
 const App = () => {
   return (
@@ -27,6 +28,7 @@ const App = () => {
           <Route path="profile" element={<EditProfilePage />} />
           <Route path="password" element={<ChangePasswordPage />} />
         </Route>
+        <Route path="/login" element={<LoginPage />} />
       </Routes>
     </BrowserRouter>
   );
