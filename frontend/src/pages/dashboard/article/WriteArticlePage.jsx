@@ -1,35 +1,13 @@
-import { useState } from "react";
-import axios from "axios";
+import React from "react";
 import Editor from "@/features/editor/Editor";
 import Button from "@/shared/ui/Button";
 import InputImage from "@/shared/ui/InputImage";
 import Input from "@/shared/ui/Input";
-import { createPost } from "./Article.api";
+import useWriteArticle from "@/features/article/hooks/useWriteArticle";
 
 const WriteArticlePage = () => {
-  const [editorData, setEditorData] = useState(null);
-  const [title, setTitle] = useState(null);
-  const [thumbnail, setThumbnail] = useState(null);
-
-  const handleThumbnail = (file) => {
-    setThumbnail(file);
-  };
-
-  const handleSubmit = async () => {
-    const payload = {
-      title,
-      thumbnail,
-      tags: ["Laravel", "React", "Editor.js"],
-      content: editorData,
-    };
-
-    try {
-      const response = await createPost(payload);
-      console.log(response);
-    } catch (error) {
-      console.log(error);
-    }
-  };
+  const { setEditorData, handleThumbnail, setTitle, handleSubmit } =
+    useWriteArticle();
 
   return (
     <div>
