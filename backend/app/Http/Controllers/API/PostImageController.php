@@ -5,36 +5,32 @@ namespace App\Http\Controllers\API;
 use App\Http\Controllers\Controller;
 use App\Models\PostImage;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Validator;
-use Illuminate\Support\Str;
 
 class PostImageController extends Controller
 {
-    public function upload(Request $request)
+    public function uploadImage(Request $request)
     {
-        $validator = Validator::make($request->all(), [
-            'image' => 'required|image|max:2048', // max 2MB
-        ]);
-
-        if ($validator->fails()) {
-            return response()->json(['success' => 0, 'message' => 'Invalid image'], 400);
+        if (!$request->hasFile('image')) {
+            return response()->json(['success' => 0, 'message' => 'No file uploaded'], 400);
         }
 
         $file = $request->file('image');
-        $filename = Str::uuid() . '.' . $file->getClientOriginalExtension();
+        $originalName = $file->getClientOriginalName();
+        $cleanName = preg_replace('/\s+/', '-', $originalName);
+        $filename = time() . '_' . $cleanName;
         $path = 'uploads/' . $filename;
+
         $file->move(public_path('uploads'), $filename);
 
-        $url = url($path);
-        $image = PostImage::create([
+        PostImage::create([
             'path' => $path,
-            'url' => $url,
+            'post_id' => null,
         ]);
 
         return response()->json([
             'success' => 1,
             'file' => [
-                'url' => $url
+                'url' => asset($path)
             ]
         ]);
     }

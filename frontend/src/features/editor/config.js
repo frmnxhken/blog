@@ -9,8 +9,7 @@ export const EDITOR_JS_TOOLS = {
     class: ImageTool,
     config: {
       endpoints: {
-        byFile: "http://localhost:8008/uploadFile",
-        byUrl: "http://localhost:8008/fetchUrl",
+        byFile: "http://127.0.0.1:8000/api/upload/image",
       },
     },
   },

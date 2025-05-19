@@ -34,10 +34,13 @@ class PostController extends Controller
             'title' => $request->title,
             'thumbnail' => $thumbnailPath,
             'slug' => Str::slug($request->title),
-            'content' => json_encode($request->content),
+            'content' => $request->content,
         ]);
 
-        $tagIds = collect($request->tags)->map(function ($tagName) {
+        $tagsString = $request->tags;
+        $tagNames = array_map('trim', explode(',', $tagsString));
+
+        $tagIds = collect($tagNames)->map(function ($tagName) {
             $tag = Tag::firstOrCreate(
                 ['slug' => Str::slug($tagName)],
                 ['name' => $tagName]
@@ -45,18 +48,19 @@ class PostController extends Controller
             return $tag->id;
         });
 
+
         $post->tags()->sync($tagIds);
 
         $content = json_decode($request->content, true);
         $usedImageUrls = collect($content['blocks'] ?? [])
             ->filter(fn($block) => $block['type'] === 'image')
             ->pluck('data.file.url')
+            ->map(fn($url) => str_replace(asset(''), '', $url)) // ambil relative path
             ->toArray();
 
-        PostImage::whereIn('path', $usedImageUrls)
-            ->update([
-                'post_id' => $post->id,
-            ]);
+        PostImage::whereIn('path', $usedImageUrls)->update([
+            'post_id' => $post->id,
+        ]);
 
         $unusedImages = PostImage::whereNull('post_id')->get();
 
