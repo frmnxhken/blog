@@ -4,7 +4,7 @@ import { ARTICLE } from "@/shared/data";
 
 const ArticleDetailPage = () => {
   return (
-    <div className="container max-w-[920px] mx-auto px-4 py-24">
+    <div className="container max-w-[680px] mx-auto px-4 py-24">
       <Header />
       <div className="w-full pb-24">
         <div

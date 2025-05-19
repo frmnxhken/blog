@@ -7,9 +7,9 @@ const Header = () => {
       <img
         src={LIST_ARTICLE[0].thumbnail}
         alt="thumbnail"
-        className="object-cover w-full rounded-xl mb-8 sm:mb-16"
+        className="object-cover w-full rounded-xl mb-8"
       />
-      <h1 className="font-semibold text-3xl sm:text-6xl w-[80%] mb-8 sm:mb-12">
+      <h1 className="font-bold text-2xl sm:text-5xl w-full mb-8 sm:mb-12">
         {LIST_ARTICLE[0].title}
       </h1>
       <p className="text-md text-zinc-500">{LIST_ARTICLE[0].date}</p>

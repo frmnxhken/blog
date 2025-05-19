@@ -13,7 +13,7 @@ const Footer = () => {
             </p>
           </div>
           <div>
-            <h1 className="text-4xl sm:text-7xl text-white font-semibold w-1/2">
+            <h1 className="text-5xl sm:text-7xl text-white font-bold w-full sm:w-1/2">
               Thank You For Visiting
             </h1>
           </div>

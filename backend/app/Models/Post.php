@@ -9,7 +9,7 @@ class Post extends Model
     protected $guarded = ['id'];
     public function tags()
     {
-        return $this->belongsToMany(Tag::class);
+        return $this->belongsToMany(Tag::class, 'post_tags');
     }
 
     public function images()

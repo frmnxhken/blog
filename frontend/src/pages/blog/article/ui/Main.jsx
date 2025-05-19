@@ -8,8 +8,8 @@ const Main = () => {
     <div className="bg-white w-full rounded-t-3xl rounded-b-3xl">
       <div className="container max-w-[1200px] mx-auto px-4 py-24">
         <div className="flex flex-col sm:flex-row justify-between items-start sm:items-end-safe gap-6">
-          <h1 className="text-4xl sm:text-6xl font-semibold w-3/4">Articles</h1>
-          <p className="text-md text-zinc-500 text-left w-3/4">
+          <h1 className="text-4xl sm:text-6xl font-bold w-3/4">Articles</h1>
+          <p className="text-sm sm:text-md text-zinc-500 text-left w-full sm:w-3/4">
             Lorem ipsum dolor sit amet consectetur adipisicing elit. Suscipit
             iusto ab vel provident veniam numquam fuga, alias aliquam tempore
             quia.
@@ -22,7 +22,7 @@ const Main = () => {
           ))}
         </div>
 
-        <div className="grid grid-cols-2 sm:grid-cols-3 gap-4 sm:gap-6 mt-24">
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 sm:gap-6 mt-24">
           {LIST_ARTICLE.map((article, index) => (
             <Card key={index} {...article} />
           ))}
