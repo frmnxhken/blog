@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { getArticles } from "../api";
+import { getArticles } from "@/features/article/api";
 
 export const useArticles = (status, keyword) => {
   const [articles, setArticles] = useState(null);

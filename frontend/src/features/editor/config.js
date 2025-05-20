@@ -11,6 +11,10 @@ export const EDITOR_JS_TOOLS = {
       endpoints: {
         byFile: "http://127.0.0.1:8000/api/upload/image",
       },
+      additionalRequestHeaders: {
+        Authorization: `Bearer ${localStorage.getItem("token")}`,
+        Accept: "application/json",
+      },
     },
   },
   header: {

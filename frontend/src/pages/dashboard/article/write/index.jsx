@@ -1,9 +1,9 @@
 import React from "react";
-import Editor from "@/features/editor/Editor";
+import Editor from "@/features/editor/ui/Editor";
 import Button from "@/shared/ui/Button";
 import InputImage from "@/shared/ui/InputImage";
 import Input from "@/shared/ui/Input";
-import useWriteArticle from "@/features/article/hooks/useWriteArticle";
+import useWriteArticle from "@/features/article/write/model/useWriteArticle";
 import InputTag from "@/shared/ui/InputTag";
 
 const WriteArticlePage = () => {

@@ -1,5 +1,5 @@
 import { useRef, useEffect } from "react";
-import { EDITOR_JS_TOOLS } from "./config";
+import { EDITOR_JS_TOOLS } from "../config";
 import EditorJS from "@editorjs/editorjs";
 
 const Editor = ({ holder = "editor", data = null, onChange }) => {

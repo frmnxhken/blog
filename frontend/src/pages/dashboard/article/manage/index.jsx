@@ -1,8 +1,8 @@
 import React, { useState } from "react";
-import ArticleItem from "./ui/ArticleItem";
-import Tab from "./ui/Tab";
-import SearchInput from "./ui/SearchInput";
-import { useArticles } from "@/features/article/hooks/useArticles";
+import ArticleItem from "@/features/article/manage/ui/ArticleItem";
+import Tab from "@/features/article/manage/ui/Tab";
+import SearchInput from "@/features/article/manage/ui/SearchInput";
+import { useArticles } from "@/features/article/manage/model/useArticles";
 import Loading from "@/shared/ui/Loading";
 
 const ArticleManagePage = () => {

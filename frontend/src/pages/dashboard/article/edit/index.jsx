@@ -1,12 +1,12 @@
 import React from "react";
-import Editor from "@/features/editor/Editor";
+import Editor from "@/features/editor/ui/Editor";
 import Button from "@/shared/ui/Button";
 import InputImage from "@/shared/ui/InputImage";
 import Input from "@/shared/ui/Input";
 import InputTag from "@/shared/ui/InputTag";
 import Loading from "@/shared/ui/Loading";
-import useEditArticle from "@/features/article/hooks/useEditArticle";
 import { useParams } from "react-router-dom";
+import useEditArticle from "@/features/article/edit/model/useEditArticle";
 
 const EditArticlePage = () => {
   const { id } = useParams();

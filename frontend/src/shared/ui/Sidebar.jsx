@@ -1,5 +1,7 @@
+import { useAuth } from "@/app/contexts/AuthContext";
 import React from "react";
 import {
+  HiOutlineArrowLeftEndOnRectangle,
   HiOutlineDocument,
   HiOutlineKey,
   HiOutlinePencilSquare,
@@ -11,6 +13,7 @@ import { Link, useLocation } from "react-router-dom";
 const Sidebar = () => {
   const location = useLocation();
   const currentLocation = location.pathname;
+  const { logout } = useAuth();
 
   const navigations = [
     {
@@ -73,6 +76,13 @@ const Sidebar = () => {
             </ul>
           </div>
         ))}
+        <button
+          onClick={logout}
+          className="text-sm flex items-center gap-4 mt-12 p-3 cursor-pointer"
+        >
+          <HiOutlineArrowLeftEndOnRectangle size={18} />
+          Logout
+        </button>
       </div>
     </div>
   );

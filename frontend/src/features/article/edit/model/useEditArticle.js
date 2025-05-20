@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { getArticleById, updatePost } from "../api";
+import { getArticleById, updatePost } from "@/features/article/api";
 
 const useEditArticle = (id) => {
   const [article, setArticle] = useState(null);

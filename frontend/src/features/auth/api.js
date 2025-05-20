@@ -1,0 +1,20 @@
+import api from "@/shared/api/Api";
+import { ErrorHandler } from "@/shared/utils/ErrorHandler";
+
+export const Authentication = async (payload) => {
+  try {
+    const response = await api.post("/auth", payload);
+    return response.data;
+  } catch (error) {
+    ErrorHandler(error);
+  }
+};
+
+export const Deauthentication = async () => {
+  try {
+    const response = await api.post("/deauth");
+    return response.data;
+  } catch (error) {
+    ErrorHandler(error);
+  }
+};
