@@ -37,3 +37,21 @@ export const createPost = async (payload) => {
     ErrorHandler(error);
   }
 };
+
+export const updatePost = async (payload) => {
+  const formData = new FormData();
+
+  formData.append("title", payload.title);
+  formData.append("thumbnail", payload.thumbnail);
+  formData.append("content", JSON.stringify(payload.content));
+  formData.append("tags", payload.tags);
+  formData.append("status", payload.status);
+  formData.append("_method", "PUT");
+
+  try {
+    const response = await api.post("/post/1", formData);
+    return response.data;
+  } catch (error) {
+    ErrorHandler(error);
+  }
+};

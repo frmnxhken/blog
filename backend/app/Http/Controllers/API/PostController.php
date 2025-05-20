@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
+use App\Http\Resources\PostResource;
 use App\Models\Post;
 use App\Models\PostImage;
 use App\Models\Tag;
@@ -92,15 +93,79 @@ class PostController extends Controller
 
     public function show($id)
     {
-        $article = Post::findOrFail($id);
+        $article = Post::with('tags')->findOrFail($id);
         return response()->json([
             'message' => 'Article Detail',
-            'data' => $article
+            'data' => new PostResource($article)
         ]);
     }
 
 
-    public function update(Request $request, $id) {}
+    public function update(Request $request, Post $post)
+    {
+        if ($request->hasFile('thumbnail')) {
+            if ($post->thumbnail && file_exists(public_path($post->thumbnail))) {
+                unlink(public_path($post->thumbnail));
+            }
+
+            $filename = time() . '_' . $request->file('thumbnail')->getClientOriginalName();
+            $path = 'uploads/thumbnails/' . $filename;
+            $request->file('thumbnail')->move(public_path('uploads/thumbnails'), $filename);
+            $post->thumbnail = $path;
+        }
+
+        $post->update([
+            'title' => $request->title,
+            'slug' => Str::slug($request->title),
+            'content' => $request->content,
+            'status' => $request->status,
+            'thumbnail' => $post->thumbnail,
+        ]);
+
+        $tagsString = $request->tags;
+        $tagNames = array_map('trim', explode(',', $tagsString));
+
+        $tagIds = collect($tagNames)->map(function ($tagName) {
+            $tag = Tag::firstOrCreate(
+                ['slug' => Str::slug($tagName)],
+                ['name' => $tagName]
+            );
+            return $tag->id;
+        });
+
+        $post->tags()->sync($tagIds);
+
+        $unusedTags = Tag::doesntHave('posts')->get();
+        foreach ($unusedTags as $tag) {
+            $tag->delete();
+        }
+
+        $content = json_decode($request->content, true);
+        $usedImageUrls = collect($content['blocks'] ?? [])
+            ->filter(fn($block) => $block['type'] === 'image')
+            ->pluck('data.file.url')
+            ->map(fn($url) => str_replace(asset(''), '', $url)) // ambil relative path
+            ->toArray();
+
+        PostImage::whereIn('path', $usedImageUrls)->update([
+            'post_id' => $post->id,
+        ]);
+
+        $unusedImages = PostImage::whereNull('post_id')->get();
+        foreach ($unusedImages as $img) {
+            $fullPath = public_path($img->path);
+            if (file_exists($fullPath)) {
+                unlink($fullPath);
+            }
+            $img->delete();
+        }
+
+        return response()->json([
+            'success' => true,
+            'post' => $post
+        ]);
+    }
+
 
     public function destroy() {}
 }

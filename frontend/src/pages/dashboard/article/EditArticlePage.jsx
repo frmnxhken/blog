@@ -1,56 +1,65 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import Editor from "@/features/editor/Editor";
 import Button from "@/shared/ui/Button";
 import InputImage from "@/shared/ui/InputImage";
 import Input from "@/shared/ui/Input";
-import { getArticleById } from "@/features/article/api";
+import InputTag from "@/shared/ui/InputTag";
 import Loading from "@/shared/ui/Loading";
+import useEditArticle from "@/features/article/hooks/useEditArticle";
 
 const EditArticlePage = () => {
-  const [article, setArticle] = useState(null);
-  const [content, setContent] = useState(null);
-  const [loading, setLoading] = useState(true);
-
-  useEffect(() => {
-    let ignore = true;
-    const fetchDetail = async () => {
-      const response = await getArticleById();
-      setArticle(response.data);
-      setContent(JSON.parse(response.data.content));
-      setLoading(false);
-    };
-
-    fetchDetail();
-
-    return () => {
-      ignore = true;
-    };
-  }, []);
+  const { loading, formData, handleChange, handleSubmit } = useEditArticle();
 
   return (
     <div>
-      <div className="flex justify-between mb-6">
-        <Input
-          value={article?.title}
-          placeholder="Title article..."
-          className="w-[80%]"
-        />
-        <div>
-          <Button>Publish</Button>
-          <Button variant="secondary">Draft</Button>
-        </div>
+      <div className="flex flex-row-reverse mb-6 w-full">
+        <Button onClick={() => handleSubmit("publish")}>Publish</Button>
+        <Button onClick={() => handleSubmit("draft")} variant="secondary">
+          Draft
+        </Button>
+      </div>
+
+      <div className="space-y-3 mb-6">
+        {!loading && (
+          <Input
+            label="Title article"
+            value={formData.title}
+            onChange={(e) => handleChange("title", e.target.value)}
+            placeholder="Title article..."
+            className="w-full"
+          />
+        )}
+
+        {!loading && (
+          <InputTag
+            value={formData.tags}
+            onChange={(val) => handleChange("tags", val)}
+            label="Tag article"
+          />
+        )}
       </div>
 
       <div className="mb-6">
         {loading ? (
           <Loading />
         ) : (
-          <InputImage image={"http://127.0.0.1:8000/" + article?.thumbnail} />
+          <InputImage
+            onImageChange={(file) => handleChange("thumbnail", file)}
+            image={"http://127.0.0.1:8000/" + formData.thumbnail}
+          />
         )}
       </div>
 
       <div className="w-full max-w-none py-4 rounded-lg bg-white border border-zinc-200">
-        {loading ? <Loading /> : <Editor holder="editor" data={content} />}
+        {loading ? (
+          <Loading />
+        ) : (
+          <Editor
+            holder="editor"
+            data={formData.content}
+            onChange={(val) => handleChange("content", val)}
+          />
+        )}
       </div>
     </div>
   );
