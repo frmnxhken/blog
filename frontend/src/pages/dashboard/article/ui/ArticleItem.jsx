@@ -1,7 +1,7 @@
 import React from "react";
-import { data, Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 
-const ArticleItem = ({ title, date, thumbnail }) => {
+const ArticleItem = ({ id, title, date, thumbnail }) => {
   return (
     <div className="w-full border-b border-zinc-200 py-2">
       <div className="flex items-center gap-x-4">
@@ -14,7 +14,7 @@ const ArticleItem = ({ title, date, thumbnail }) => {
           <h3 className="text-sm font-medium mb-2">{title}</h3>
           <p className="text-xs mb-4 text-zinc-500">{date}</p>
           <div className="flex items-center gap-x-4">
-            <Link to="/" className="text-sm">
+            <Link to={id + "/edit"} className="text-sm">
               Edit
             </Link>
             <button className="text-sm text-rose-600">Delete</button>

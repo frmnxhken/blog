@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { getArticleById, updatePost } from "../api";
 
-const useEditArticle = () => {
+const useEditArticle = (id) => {
   const [article, setArticle] = useState(null);
   const [loading, setLoading] = useState(true);
   const [formData, setFormData] = useState({
@@ -14,7 +14,7 @@ const useEditArticle = () => {
   useEffect(() => {
     const fetchDetail = async () => {
       try {
-        const response = await getArticleById();
+        const response = await getArticleById(id);
         const { title, tags, thumbnail, content } = response.data;
 
         setArticle(response.data);
@@ -45,7 +45,7 @@ const useEditArticle = () => {
     };
 
     try {
-      const response = await updatePost(payload);
+      const response = await updatePost(id, payload);
       console.log("Updated:", response);
     } catch (error) {
       console.error("Failed to update article:", error);

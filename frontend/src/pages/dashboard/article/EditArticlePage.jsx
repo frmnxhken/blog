@@ -6,9 +6,11 @@ import Input from "@/shared/ui/Input";
 import InputTag from "@/shared/ui/InputTag";
 import Loading from "@/shared/ui/Loading";
 import useEditArticle from "@/features/article/hooks/useEditArticle";
+import { useParams } from "react-router-dom";
 
 const EditArticlePage = () => {
-  const { loading, formData, handleChange, handleSubmit } = useEditArticle();
+  const { id } = useParams();
+  const { loading, formData, handleChange, handleSubmit } = useEditArticle(id);
 
   return (
     <div>

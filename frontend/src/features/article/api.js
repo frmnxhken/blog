@@ -12,9 +12,9 @@ export const getArticles = async (status, keyword) => {
   }
 };
 
-export const getArticleById = async () => {
+export const getArticleById = async (id) => {
   try {
-    const response = await api.get("/post/1");
+    const response = await api.get("/post/" + id);
     return response.data;
   } catch (error) {
     ErrorHandler(error);
@@ -38,7 +38,7 @@ export const createPost = async (payload) => {
   }
 };
 
-export const updatePost = async (payload) => {
+export const updatePost = async (id, payload) => {
   const formData = new FormData();
 
   formData.append("title", payload.title);

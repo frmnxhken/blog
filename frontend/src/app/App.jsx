@@ -25,7 +25,7 @@ const App = () => {
         <Route path="/dashboard" element={<DashboardLayout />}>
           <Route index element={<DashboardPage />} />
           <Route path="article" element={<ArticleManagePage />} />
-          <Route path="article/edit" element={<EditArticlePage />} />
+          <Route path="article/:id/edit" element={<EditArticlePage />} />
           <Route path="write" element={<WriteArticlePage />} />
           <Route path="profile" element={<EditProfilePage />} />
           <Route path="password" element={<ChangePasswordPage />} />
