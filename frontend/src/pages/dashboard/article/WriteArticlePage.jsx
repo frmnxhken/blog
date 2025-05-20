@@ -18,8 +18,10 @@ const WriteArticlePage = () => {
           className="w-[80%]"
         />
         <div>
-          <Button onClick={handleSubmit}>Publish</Button>
-          <Button variant="secondary">Draft</Button>
+          <Button onClick={() => handleSubmit("publish")}>Publish</Button>
+          <Button onClick={() => handleSubmit("draft")} variant="secondary">
+            Draft
+          </Button>
         </div>
       </div>
 

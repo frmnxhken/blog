@@ -1,11 +1,20 @@
-import React from "react";
-
-const Tab = () => {
+const Tab = ({ onChangeStatus, active }) => {
   return (
     <div className="mt-6 border-b-1 border-zinc-200">
       <ul className="flex gap-x-6">
-        <li className="text-sm border-b-2 border-black p-2">Published</li>
-        <li className="text-sm text-zinc-400 p-2">Drafted</li>
+        {["publish", "draft"].map((status) => (
+          <li
+            key={status}
+            onClick={() => onChangeStatus(status)}
+            className={`text-sm p-2 cursor-pointer ${
+              active === status
+                ? "text-black border-b-2 border-black"
+                : "text-zinc-400"
+            }`}
+          >
+            {status === "publish" ? "Published" : "Drafted"}
+          </li>
+        ))}
       </ul>
     </div>
   );

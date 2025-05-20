@@ -1,9 +1,11 @@
 import api from "@/shared/api/Api";
 import { ErrorHandler } from "@/shared/utils/ErrorHandler";
 
-export const getArticles = async () => {
+export const getArticles = async (status, keyword) => {
   try {
-    const response = await api.get("/post");
+    const response = await api.get(
+      "/post?status=" + status + "&key=" + keyword
+    );
     return response.data;
   } catch (error) {
     ErrorHandler(error);
@@ -17,6 +19,7 @@ export const createPost = async (payload) => {
   formData.append("thumbnail", payload.thumbnail);
   formData.append("content", JSON.stringify(payload.content));
   formData.append("tags", payload.tags);
+  formData.append("status", payload.status);
 
   try {
     const response = await api.post("/post", formData);

@@ -1,12 +1,25 @@
-import React from "react";
+import React, { useState } from "react";
 import Button from "@/shared/ui/Button";
 import Input from "@/shared/ui/Input";
 
-const SearchInput = () => {
+const SearchInput = ({ onSearch }) => {
+  const [keyword, setKeyword] = useState("");
+
   return (
     <div className="flex w-full items-center gap-x-4">
-      <Input placeholder="Search article..." className="w-full" />
-      <Button>Search</Button>
+      <Input
+        value={keyword}
+        onChange={(e) => setKeyword(e.target.value)}
+        placeholder="Search article..."
+        className="w-full"
+      />
+      <Button
+        onClick={() => {
+          onSearch(keyword);
+        }}
+      >
+        Search
+      </Button>
     </div>
   );
 };

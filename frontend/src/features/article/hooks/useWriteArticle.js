@@ -10,12 +10,13 @@ const useWriteArticle = () => {
     setThumbnail(file);
   };
 
-  const handleSubmit = async () => {
+  const handleSubmit = async (status) => {
     const payload = {
       title,
       thumbnail,
       tags: ["Laravel", "React", "Editor.js"],
       content: editorData,
+      status,
     };
 
     try {

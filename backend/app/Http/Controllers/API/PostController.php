@@ -11,14 +11,25 @@ use Illuminate\Support\Str;
 
 class PostController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        $articles = Post::get();
+        $status = $request->query("status");
+        $key = $request->query("key");
+
+        $articles = Post::when($status, function ($query, $status) {
+            return $query->where('status', $status);
+        })
+            ->when($key, function ($query, $key) {
+                return $query->where('title', 'like', '%' . $key . '%');
+            })
+            ->get();
+
         return response()->json([
             'message' => 'Articles',
             'data' => $articles
         ]);
     }
+
 
     public function store(Request $request)
     {
