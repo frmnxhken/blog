@@ -4,9 +4,10 @@ const InputImage = ({
   label = "Your Thumbnail",
   maxHeight = 400,
   onImageChange = () => {},
+  image = null,
   previewClassName = "w-full h-full object-cover rounded-lg",
 }) => {
-  const [preview, setPreview] = useState(null);
+  const [preview, setPreview] = useState(image);
   const [dragActive, setDragActive] = useState(false);
   const inputRef = useRef(null);
 

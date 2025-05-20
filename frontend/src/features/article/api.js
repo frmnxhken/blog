@@ -12,6 +12,15 @@ export const getArticles = async (status, keyword) => {
   }
 };
 
+export const getArticleById = async () => {
+  try {
+    const response = await api.get("/post/1");
+    return response.data;
+  } catch (error) {
+    ErrorHandler(error);
+  }
+};
+
 export const createPost = async (payload) => {
   const formData = new FormData();
 

@@ -11,6 +11,7 @@ import EditProfilePage from "@/pages/dashboard/profile/EditProfilePage";
 import ChangePasswordPage from "@/pages/dashboard/password/ChangePasswordPage";
 import WriteArticlePage from "@/pages/dashboard/article/WriteArticlePage";
 import LoginPage from "@/pages/dashboard/auth/LoginPage";
+import EditArticlePage from "@/pages/dashboard/article/EditArticlePage";
 
 const App = () => {
   return (
@@ -24,6 +25,7 @@ const App = () => {
         <Route path="/dashboard" element={<DashboardLayout />}>
           <Route index element={<DashboardPage />} />
           <Route path="article" element={<ArticleManagePage />} />
+          <Route path="article/edit" element={<EditArticlePage />} />
           <Route path="write" element={<WriteArticlePage />} />
           <Route path="profile" element={<EditProfilePage />} />
           <Route path="password" element={<ChangePasswordPage />} />

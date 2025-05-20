@@ -90,8 +90,17 @@ class PostController extends Controller
         ]);
     }
 
+    public function show($id)
+    {
+        $article = Post::findOrFail($id);
+        return response()->json([
+            'message' => 'Article Detail',
+            'data' => $article
+        ]);
+    }
 
-    public function update() {}
+
+    public function update(Request $request, $id) {}
 
     public function destroy() {}
 }
