@@ -5,6 +5,7 @@ const useWriteArticle = () => {
   const [editorData, setEditorData] = useState(null);
   const [title, setTitle] = useState("");
   const [thumbnail, setThumbnail] = useState(null);
+  const [tags, setTags] = useState([]);
 
   const handleThumbnail = (file) => {
     setThumbnail(file);
@@ -14,7 +15,7 @@ const useWriteArticle = () => {
     const payload = {
       title,
       thumbnail,
-      tags: ["Laravel", "React", "Editor.js"],
+      tags,
       content: editorData,
       status,
     };
@@ -27,7 +28,14 @@ const useWriteArticle = () => {
     }
   };
 
-  return { setEditorData, handleThumbnail, setTitle, handleSubmit };
+  return {
+    setEditorData,
+    handleThumbnail,
+    setTitle,
+    tags,
+    setTags,
+    handleSubmit,
+  };
 };
 
 export default useWriteArticle;

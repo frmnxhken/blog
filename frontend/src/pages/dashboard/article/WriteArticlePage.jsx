@@ -4,25 +4,39 @@ import Button from "@/shared/ui/Button";
 import InputImage from "@/shared/ui/InputImage";
 import Input from "@/shared/ui/Input";
 import useWriteArticle from "@/features/article/hooks/useWriteArticle";
+import InputTag from "@/shared/ui/InputTag";
 
 const WriteArticlePage = () => {
-  const { setEditorData, handleThumbnail, setTitle, handleSubmit } =
-    useWriteArticle();
+  const {
+    setEditorData,
+    handleThumbnail,
+    setTitle,
+    tags,
+    setTags,
+    handleSubmit,
+  } = useWriteArticle();
 
   return (
     <div>
-      <div className="flex justify-between mb-6">
+      <div className="flex flex-row-reverse mb-6 w-full">
+        <Button onClick={() => handleSubmit("publish")}>Publish</Button>
+        <Button onClick={() => handleSubmit("draft")} variant="secondary">
+          Draft
+        </Button>
+      </div>
+
+      <div className="space-y-3 mb-6">
         <Input
+          label="Title article"
           onChange={(e) => setTitle(e.target.value)}
           placeholder="Title article..."
-          className="w-[80%]"
+          className="w-full"
         />
-        <div>
-          <Button onClick={() => handleSubmit("publish")}>Publish</Button>
-          <Button onClick={() => handleSubmit("draft")} variant="secondary">
-            Draft
-          </Button>
-        </div>
+        <InputTag
+          value={tags}
+          onChange={(val) => setTags(val)}
+          label="Tag article"
+        />
       </div>
 
       <div className="mb-6">
