@@ -6,7 +6,7 @@ const ArticleItem = ({ title, date, thumbnail }) => {
     <div className="w-full border-b border-zinc-200 py-2">
       <div className="flex items-center gap-x-4">
         <img
-          src={thumbnail}
+          src={"http://127.0.0.1:8000/" + thumbnail}
           alt="thumbnail"
           className="h-[80px] aspect-video object-cover rounded-md"
         />

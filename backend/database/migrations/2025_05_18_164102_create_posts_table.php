@@ -18,6 +18,7 @@ return new class extends Migration
             $table->string('slug')->unique();
             $table->text('thumbnail');
             $table->json('content');
+            $table->enum('status', ['publish', 'draft']);
             $table->timestamps();
         });
     }

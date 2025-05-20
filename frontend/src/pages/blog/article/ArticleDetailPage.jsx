@@ -2,18 +2,6 @@ import React, { useEffect, useState } from "react";
 import Header from "./ui/Header";
 import EditorJsRenderer from "editorjs-react-renderer";
 
-const renderers = {
-  image: ({ data }) => (
-    <div>
-      <img src={data.file.url} alt={data.caption || "image"} />
-    </div>
-  ),
-  header: ({ data }) => {
-    const Tag = `h${data.level}`;
-    return <Tag>{data.text}</Tag>;
-  },
-};
-
 const ArticleDetailPage = () => {
   const [content, setContent] = useState(null);
 
