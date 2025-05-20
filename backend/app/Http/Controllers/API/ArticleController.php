@@ -3,8 +3,9 @@
 namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
+use App\Http\Resources\ArticleDetailResource;
+use App\Http\Resources\ArticleResource;
 use App\Models\Post;
-use Illuminate\Http\Request;
 
 class ArticleController extends Controller
 {
@@ -13,7 +14,7 @@ class ArticleController extends Controller
         $articles = Post::where('status', 'publish')->get();
         return response()->json([
             'message' => 'List Article',
-            'data' => $articles
+            'data' => ArticleResource::collection($articles)
         ]);
     }
 
@@ -22,7 +23,7 @@ class ArticleController extends Controller
         $articles = Post::where('status', 'publish')->get();
         return response()->json([
             'message' => 'List Article',
-            'data' => $articles
+            'data' => ArticleResource::collection($articles)
         ]);
     }
 
@@ -31,7 +32,7 @@ class ArticleController extends Controller
         $article = Post::where('slug', $slug)->first();
         return response()->json([
             'message' => 'Detail article',
-            'data' => $article
+            'data' => new ArticleDetailResource($article)
         ]);
     }
 }
