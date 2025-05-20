@@ -49,7 +49,16 @@ export const updatePost = async (id, payload) => {
   formData.append("_method", "PUT");
 
   try {
-    const response = await api.post("/post/1", formData);
+    const response = await api.post("/post/" + id, formData);
+    return response.data;
+  } catch (error) {
+    ErrorHandler(error);
+  }
+};
+
+export const deletePost = async (id) => {
+  try {
+    const response = await api.delete("/post/" + id);
     return response.data;
   } catch (error) {
     ErrorHandler(error);

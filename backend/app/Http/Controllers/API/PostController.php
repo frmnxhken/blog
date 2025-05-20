@@ -167,5 +167,27 @@ class PostController extends Controller
     }
 
 
-    public function destroy() {}
+    public function destroy($id)
+    {
+
+        $usedImages = PostImage::where('post_id', $id)->get();
+        foreach ($usedImages as $img) {
+            $fullPath = public_path($img->path);
+            if (file_exists($fullPath)) {
+                unlink($fullPath);
+            }
+            $img->delete();
+        }
+
+        Post::findOrFail($id)->delete();
+
+        $unusedTags = Tag::doesntHave('posts')->get();
+        foreach ($unusedTags as $tag) {
+            $tag->delete();
+        }
+
+        return response()->json([
+            'success' => true,
+        ]);
+    }
 }
