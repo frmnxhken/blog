@@ -35,6 +35,7 @@ class PostController extends Controller
             'thumbnail' => $thumbnailPath,
             'slug' => Str::slug($request->title),
             'content' => $request->content,
+            'status' => $request->status,
         ]);
 
         $tagsString = $request->tags;

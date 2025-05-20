@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { getArticles } from "../api";
 
 export const useArticles = () => {
-  const [articles, setArticles] = useState([]);
+  const [articles, setArticles] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
@@ -13,7 +13,7 @@ export const useArticles = () => {
       if (response.error) {
         setError(response.message);
       } else {
-        setArticles(response);
+        setArticles(response.data);
       }
       setLoading(false);
     };
