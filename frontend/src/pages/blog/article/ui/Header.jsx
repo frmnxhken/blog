@@ -1,18 +1,13 @@
 import React from "react";
-import { LIST_ARTICLE } from "@/shared/data";
 
 const Header = () => {
   return (
-    <div className="border-b-2 border-zinc-200 pb-12">
-      <img
-        src={LIST_ARTICLE[0].thumbnail}
-        alt="thumbnail"
-        className="object-cover w-full rounded-xl mb-8"
-      />
-      <h1 className="font-bold text-2xl sm:text-5xl w-full mb-8 sm:mb-12">
-        {LIST_ARTICLE[0].title}
-      </h1>
-      <p className="text-md text-zinc-500">{LIST_ARTICLE[0].date}</p>
+    <div className="flex flex-col sm:flex-row justify-between items-start sm:items-end-safe gap-6">
+      <h1 className="text-4xl sm:text-6xl font-bold w-3/4">Articles</h1>
+      <p className="text-sm sm:text-md text-zinc-500 text-left w-full sm:w-3/4">
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Suscipit iusto
+        ab vel provident veniam numquam fuga, alias aliquam tempore quia.
+      </p>
     </div>
   );
 };

@@ -1,8 +1,11 @@
 import React from "react";
 import { HiArrowUpRight } from "react-icons/hi2";
 import Badge from "./Badge";
+import { useNavigate } from "react-router-dom";
 
-const Card = ({ title, thumbnail, date }) => {
+const Card = ({ title, thumbnail, date, slug }) => {
+  const navigate = useNavigate();
+
   return (
     <div className="border border-zinc-200 p-1 rounded-lg hover:bg-zinc-100">
       <img
@@ -20,7 +23,11 @@ const Card = ({ title, thumbnail, date }) => {
         </div>
         <div className="flex justify-between items-center">
           <p className="text-sm text-zinc-500">{date}</p>
-          <HiArrowUpRight className="cursor-pointer" size={24} />
+          <HiArrowUpRight
+            onClick={() => navigate("/article/" + slug)}
+            className="cursor-pointer"
+            size={24}
+          />
         </div>
       </div>
     </div>

@@ -1,9 +1,7 @@
 import React from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { DashboardLayout, MainLayout } from "./layout";
-import HomePage from "@/pages/blog/home/HomePage";
-import ArticlePage from "@/pages/blog/article/ArticlePage";
-import ArticleDetailPage from "@/pages/blog/article/ArticleDetailPage";
+import { HomePage } from "@/pages/blog/home";
 import DashboardPage from "@/pages/dashboard/home/HomePage";
 import EditProfilePage from "@/pages/dashboard/profile/EditProfilePage";
 import ChangePasswordPage from "@/pages/dashboard/password/ChangePasswordPage";
@@ -14,6 +12,8 @@ import {
   EditArticlePage,
   WriteArticlePage,
 } from "@/pages/dashboard/article";
+import { ArticlePage } from "@/pages/blog/article";
+import { ArticleDetailPage } from "@/pages/blog/detail";
 
 const App = () => {
   return (
@@ -22,7 +22,7 @@ const App = () => {
         <Route path="/" element={<MainLayout />}>
           <Route index element={<HomePage />} />
           <Route path="/article" element={<ArticlePage />} />
-          <Route path="/article/detail" element={<ArticleDetailPage />} />
+          <Route path="/article/:slug" element={<ArticleDetailPage />} />
         </Route>
         <Route element={<ProtectedRoute />}>
           <Route path="/dashboard" element={<DashboardLayout />}>
