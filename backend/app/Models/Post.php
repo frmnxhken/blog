@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Str;
 
 class Post extends Model
 {
@@ -15,5 +16,18 @@ class Post extends Model
     public function images()
     {
         return $this->hasMany(PostImage::class);
+    }
+
+    protected static function booted()
+    {
+        static::creating(function ($post) {
+            $post->slug = Str::slug($post->title);
+        });
+
+        static::updating(function ($post) {
+            if ($post->isDirty('title')) {
+                $post->slug = Str::slug($post->title);
+            }
+        });
     }
 }

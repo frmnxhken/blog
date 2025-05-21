@@ -14,10 +14,16 @@ class ArticleResource extends JsonResource
      */
     public function toArray(Request $request): array
     {
+        $tags = [];
+        foreach ($this->tags as $tag) {
+            $tags[] = $tag->name;
+        }
+
         return [
             'title' => $this->title,
             'slug' => $this->slug,
             'thumbnail' => asset($this->thumbnail),
+            'tags' => $tags,
             'date' => $this->created_at->format("Y M d"),
         ];
     }

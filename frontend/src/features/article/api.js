@@ -1,5 +1,5 @@
 import api from "@/shared/api/Api";
-import { ErrorHandler } from "@/shared/utils/ErrorHandler";
+import { ErrorHandler } from "@/shared/lib/ErrorHandler";
 
 export const getArticles = async (status, keyword) => {
   try {

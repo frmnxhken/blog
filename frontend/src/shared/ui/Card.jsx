@@ -3,7 +3,7 @@ import { HiArrowUpRight } from "react-icons/hi2";
 import Badge from "./Badge";
 import { useNavigate } from "react-router-dom";
 
-const Card = ({ title, thumbnail, date, slug }) => {
+const Card = ({ title, thumbnail, date, slug, tags }) => {
   const navigate = useNavigate();
 
   return (
@@ -16,8 +16,9 @@ const Card = ({ title, thumbnail, date, slug }) => {
       <div className="flex flex-col justify-between p-6 min-h-[250px]">
         <div>
           <div className="flex items-center gap-2 mb-4">
-            <Badge text="Design" />
-            <Badge text="Mobile" />
+            {tags.map((tag, index) => (
+              <Badge text={tag} key={index} />
+            ))}
           </div>
           <h3 className="text-xl sm:text-2xl font-bold">{title}</h3>
         </div>

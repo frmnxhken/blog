@@ -2,7 +2,7 @@ import React from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { DashboardLayout, MainLayout } from "./layout";
 import { HomePage } from "@/pages/blog/home";
-import DashboardPage from "@/pages/dashboard/home/HomePage";
+import { DashboardPage } from "@/pages/dashboard/home";
 import EditProfilePage from "@/pages/dashboard/profile/EditProfilePage";
 import ChangePasswordPage from "@/pages/dashboard/password/ChangePasswordPage";
 import LoginPage from "@/pages/auth/LoginPage";

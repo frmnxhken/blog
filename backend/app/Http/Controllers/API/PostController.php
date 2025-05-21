@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\API\PostRequest;
 use App\Http\Resources\PostResource;
 use App\Models\Post;
 use App\Models\PostImage;
@@ -32,7 +33,7 @@ class PostController extends Controller
     }
 
 
-    public function store(Request $request)
+    public function store(PostRequest $request)
     {
         $thumbnailPath = null;
         if ($request->hasFile('thumbnail')) {
@@ -116,7 +117,6 @@ class PostController extends Controller
 
         $post->update([
             'title' => $request->title,
-            'slug' => Str::slug($request->title),
             'content' => $request->content,
             'status' => $request->status,
             'thumbnail' => $post->thumbnail,

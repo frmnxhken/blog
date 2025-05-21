@@ -3,6 +3,7 @@
 use App\Http\Controllers\API\ArticleController;
 use App\Http\Controllers\API\PostController;
 use App\Http\Controllers\API\PostImageController;
+use App\Http\Controllers\API\TagController;
 use App\Http\Controllers\API\UserController;
 use Illuminate\Support\Facades\Route;
 
@@ -10,6 +11,7 @@ Route::post('/auth', [UserController::class, 'authentication'])->name('login');
 Route::get('/article', [ArticleController::class, "index"]);
 Route::get('/article/recent', [ArticleController::class, "recent"]);
 Route::get('/article/{slug}', [ArticleController::class, "show"]);
+Route::get('/tag', [TagController::class, 'index']);
 
 Route::middleware(['auth:sanctum'])->group(function () {
     Route::post('/deauth', [UserController::class, 'deAuthentication'])->name('logout');

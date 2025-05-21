@@ -4,7 +4,7 @@ import EditorJsRenderer from "editorjs-react-renderer";
 import Header from "./Header";
 import Loading from "@/shared/ui/Loading";
 import { getArticleDetail } from "@/shared/api/Article";
-import { customRenderers } from "@/shared/utils/Renderer";
+import { customRenderers } from "@/shared/lib/Renderer";
 
 const ArticleDetailPage = () => {
   const { slug } = useParams();

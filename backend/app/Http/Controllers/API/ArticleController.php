@@ -11,7 +11,7 @@ class ArticleController extends Controller
 {
     public function index()
     {
-        $articles = Post::where('status', 'publish')->get();
+        $articles = Post::with('tags')->where('status', 'publish')->get();
         return response()->json([
             'message' => 'List Article',
             'data' => ArticleResource::collection($articles)
@@ -20,7 +20,7 @@ class ArticleController extends Controller
 
     public function recent()
     {
-        $articles = Post::where('status', 'publish')->get();
+        $articles = Post::with('tags')->where('status', 'publish')->get();
         return response()->json([
             'message' => 'List Article',
             'data' => ArticleResource::collection($articles)
@@ -29,7 +29,7 @@ class ArticleController extends Controller
 
     public function show($slug)
     {
-        $article = Post::where('slug', $slug)->first();
+        $article = Post::with('tags')->where('slug', $slug)->first();
         return response()->json([
             'message' => 'Detail article',
             'data' => new ArticleDetailResource($article)

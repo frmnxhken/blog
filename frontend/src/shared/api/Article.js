@@ -1,4 +1,4 @@
-import { ErrorHandler } from "../utils/ErrorHandler";
+import { ErrorHandler } from "../lib/ErrorHandler";
 import api from "./Api";
 
 export const getArticles = async () => {
