@@ -3,79 +3,55 @@
 namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\API\AuthRequest;
+use App\Http\Requests\API\EditProfileRequest;
+use App\Services\API\UserService;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Facades\Validator;
 
 class UserController extends Controller
 {
-    public function authentication(Request $request)
+    protected $service;
+
+    public function __construct(UserService $service)
     {
-        $validation = Validator::make($request->all(), [
-            'email' => 'required|email',
-            'password' => 'required'
-        ]);
+        $this->service = $service;
+    }
 
-        if ($validation->fails()) {
-            return response()->json(['message' => $validation->errors()]);
+    public function authentication(AuthRequest $request)
+    {
+        $result = $this->service->authenticate($request);
+
+        if (!$result['success']) {
+            return response()->json(['message' => $result['message'] ?? $result['errors']], 401);
         }
-
-        if (!Auth::attempt($request->only(['email', 'password']))) {
-            return response()->json(['message' => 'Invalid Credential']);
-        }
-
-
-        $user = Auth::user();
-        $token = $user->createToken('auth_token')->plainTextToken;
 
         return response()->json([
             'success' => true,
-            'access_token' => $token,
-            'user' => $user
+            'access_token' => $result['token'],
+            'user' => $result['user']
         ]);
     }
 
     public function deauthentication()
     {
-        Auth::user()->currentAccessToken()->delete();
-        return response()->json([
-            'success' => true,
-        ]);
+        $this->service->logout();
+        return response()->json(['success' => true]);
     }
 
     public function updatePassword(Request $request)
     {
-        $user = Auth::user();
+        $result = $this->service->updatePassword($request);
 
-        $validation = Validator::make($request->all(), [
-            'current_password' => 'required',
-            'new_password' => 'required|min:8|confirmed',
-        ]);
-
-        if ($validation->fails()) {
-            return response()->json(['message' => $validation->errors()]);
+        if (!$result['success']) {
+            return response()->json(['message' => $result['message'] ?? $result['errors']], 422);
         }
 
-        if (!Hash::check($request->current_password, $user->password)) {
-            return ['success' => false, 'message' => 'Current password is incorrect.'];
-        }
-
-        $user->update(['password' => Hash::make($request->new_password)]);
-
-        return response()->json([
-            'success' => true,
-        ]);
+        return response()->json(['success' => true]);
     }
 
-    public function updateProfile(Request $request)
+    public function updateProfile(EditProfileRequest $request)
     {
-        $user = Auth::user();
-
-        $user->update($request->all());
-
-        return response()->json([
-            'success' => true,
-        ]);
+        $this->service->updateProfile($request);
+        return response()->json(['success' => true]);
     }
 }

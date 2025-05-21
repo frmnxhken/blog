@@ -4,7 +4,7 @@ namespace App\Http\Requests\API;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class PostRequest extends FormRequest
+class ChangePasswordRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -21,13 +21,9 @@ class PostRequest extends FormRequest
      */
     public function rules(): array
     {
-        $id = $this->route('post');
-
         return [
-            'title' => 'required|unique:posts,title,' . ($id ? ",$id" : ''),
-            'thumbnail' => 'required|image',
-            'content' => 'required',
-            'status' => 'required'
+            'current_password' => 'required',
+            'new_password' => 'required|min:8|confirmed'
         ];
     }
 }

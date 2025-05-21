@@ -20,7 +20,7 @@ class ArticleController extends Controller
 
     public function recent()
     {
-        $articles = Post::with('tags')->where('status', 'publish')->get();
+        $articles = Post::with('tags')->where('status', 'publish')->limit(6)->get();
         return response()->json([
             'message' => 'List Article',
             'data' => ArticleResource::collection($articles)
