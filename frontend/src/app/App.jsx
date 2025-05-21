@@ -4,7 +4,7 @@ import { DashboardLayout, MainLayout } from "./layout";
 import { HomePage } from "@/pages/blog/home";
 import { DashboardPage } from "@/pages/dashboard/home";
 import EditProfilePage from "@/pages/dashboard/profile/EditProfilePage";
-import ChangePasswordPage from "@/pages/dashboard/password/ChangePasswordPage";
+import { ChangePasswordPage } from "@/pages/dashboard/password";
 import LoginPage from "@/pages/auth/LoginPage";
 import ProtectedRoute from "./routes/ProtectedRoute";
 import {

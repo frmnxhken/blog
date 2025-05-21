@@ -4,6 +4,7 @@ namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\API\AuthRequest;
+use App\Http\Requests\API\ChangePasswordRequest;
 use App\Http\Requests\API\EditProfileRequest;
 use App\Services\API\UserService;
 use Illuminate\Http\Request;
@@ -38,7 +39,7 @@ class UserController extends Controller
         return response()->json(['success' => true]);
     }
 
-    public function updatePassword(Request $request)
+    public function updatePassword(ChangePasswordRequest $request)
     {
         $result = $this->service->updatePassword($request);
 

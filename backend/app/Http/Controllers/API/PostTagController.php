@@ -11,7 +11,7 @@ class PostTagController extends Controller
     public function index($tag)
     {
 
-        $articles = Post::whereHas('tags', function ($query) use ($tag) {
+        $articles = Post::where('status', 'publish')->whereHas('tags', function ($query) use ($tag) {
             $query->where('name', $tag);
         })->get();
 
