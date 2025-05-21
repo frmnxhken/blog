@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { getArticles } from "@/features/article/api";
 
-export const useArticles = (status, keyword) => {
+const useArticleDashboard = (status, keyword) => {
   const [articles, setArticles] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -28,3 +28,5 @@ export const useArticles = (status, keyword) => {
 
   return { articles, loading, error };
 };
+
+export default useArticleDashboard;

@@ -3,6 +3,7 @@
 namespace App\Http\Requests\API;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
 class PostRequest extends FormRequest
 {
@@ -24,10 +25,13 @@ class PostRequest extends FormRequest
         $id = $this->route('post');
 
         return [
-            'title' => 'required|unique:posts,title,' . ($id ? ",$id" : ''),
+            'title' => [
+                'required',
+                Rule::unique('posts', 'title')->ignore($id),
+            ],
             'thumbnail' => 'required|image',
             'content' => 'required',
-            'status' => 'required'
+            'status' => 'required',
         ];
     }
 }

@@ -1,26 +1,12 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import Hero from "./Hero";
 import Loading from "@/shared/ui/Loading";
 import Card from "@/shared/ui/Card";
-import { getArticleRecent } from "@/shared/api/Article";
 import Header from "./Header";
+import { useArticleUserRecent } from "@/features/article/model";
 
 const HomePage = () => {
-  const [data, setData] = useState(null);
-  const [loading, setLoading] = useState(true);
-
-  useEffect(() => {
-    setLoading(true);
-    const fetchArticleRecent = async () => {
-      const response = await getArticleRecent();
-      if (!response.error) {
-        setData(response.data);
-        setLoading(false);
-      }
-    };
-
-    fetchArticleRecent();
-  }, []);
+  const { data, loading } = useArticleUserRecent();
 
   return (
     <>

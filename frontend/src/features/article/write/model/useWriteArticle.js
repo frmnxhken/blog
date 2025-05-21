@@ -2,21 +2,20 @@ import { useState } from "react";
 import { createPost } from "@/features/article/api";
 
 const useWriteArticle = () => {
-  const [editorData, setEditorData] = useState(null);
-  const [title, setTitle] = useState("");
-  const [thumbnail, setThumbnail] = useState(null);
-  const [tags, setTags] = useState([]);
+  const [formData, setFormData] = useState({
+    title: "",
+    tags: [],
+    thumbnail: null,
+    content: null,
+  });
 
-  const handleThumbnail = (file) => {
-    setThumbnail(file);
+  const handleChange = (field, value) => {
+    setFormData((prev) => ({ ...prev, [field]: value }));
   };
 
   const handleSubmit = async (status) => {
     const payload = {
-      title,
-      thumbnail,
-      tags,
-      content: editorData,
+      ...formData,
       status,
     };
 
@@ -29,11 +28,8 @@ const useWriteArticle = () => {
   };
 
   return {
-    setEditorData,
-    handleThumbnail,
-    setTitle,
-    tags,
-    setTags,
+    formData,
+    handleChange,
     handleSubmit,
   };
 };

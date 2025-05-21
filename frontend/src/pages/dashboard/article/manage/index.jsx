@@ -1,14 +1,12 @@
 import React, { useState } from "react";
-import ArticleItem from "@/features/article/manage/ui/ArticleItem";
-import Tab from "@/features/article/manage/ui/Tab";
-import SearchInput from "@/features/article/manage/ui/SearchInput";
-import { useArticles } from "@/features/article/manage/model/useArticles";
+import { SearchInput, Tab, ArticleItem } from "@/features/article/ui";
+import { useArticleDashboard } from "@/features/article/model";
 import Loading from "@/shared/ui/Loading";
 
 const ArticleManagePage = () => {
   const [status, setStatus] = useState("publish");
   const [keyword, setKeyword] = useState("");
-  const { articles, loading } = useArticles(status, keyword);
+  const { articles, loading } = useArticleDashboard(status, keyword);
 
   return (
     <div>

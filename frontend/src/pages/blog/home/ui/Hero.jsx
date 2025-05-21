@@ -1,5 +1,5 @@
 import React from "react";
-import { SearchInput } from "@/features/article/manage/ui";
+import { SearchInput } from "@/features/article/ui";
 
 const Hero = () => {
   return (

@@ -2,28 +2,11 @@ import React, { useEffect, useState } from "react";
 import Card from "@/shared/ui/Card";
 import Tag from "./Tag";
 import Loading from "@/shared/ui/Loading";
-import { getArticleByTag, getArticles } from "@/shared/api/Article";
 import Header from "./Header";
+import { useArticleUser } from "@/features/article/model";
 
 const ArticlePage = () => {
-  const [data, setData] = useState(null);
-  const [loading, setLoading] = useState(true);
-  const [tag, setTag] = useState("all");
-
-  const fetchData = async () => {
-    setLoading(true);
-    const response =
-      tag === "all" ? await getArticles() : await getArticleByTag(tag);
-    if (!response.error) {
-      setData(response.data);
-    }
-    setLoading(false);
-  };
-
-  useEffect(() => {
-    setLoading(true);
-    fetchData();
-  }, [tag]);
+  const { data, tag, setTag, loading } = useArticleUser();
 
   return (
     <>
