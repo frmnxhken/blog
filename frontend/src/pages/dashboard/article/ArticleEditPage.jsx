@@ -3,7 +3,7 @@ import { useParams } from "react-router-dom";
 import { useArticleEdit } from "@/features/article/hooks";
 import { ArticleForm } from "@/features/article/ui";
 
-const ArticleEditPage = () => {
+const EditArticlePage = () => {
   const { id } = useParams();
   const { loading, formData, handleChange, handleSubmit } = useArticleEdit(id);
 
@@ -17,4 +17,4 @@ const ArticleEditPage = () => {
   );
 };
 
-export default ArticleEditPage;
+export default EditArticlePage;

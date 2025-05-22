@@ -1,15 +1,21 @@
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useEffect } from "react";
 
 const InputImage = ({
   label = "Your Thumbnail",
   maxHeight = 400,
   onImageChange = () => {},
-  image = null,
+  image,
   previewClassName = "w-full h-full object-cover rounded-lg",
 }) => {
   const [preview, setPreview] = useState(image);
   const [dragActive, setDragActive] = useState(false);
   const inputRef = useRef(null);
+
+  useEffect(() => {
+    if (image === null) {
+      setPreview(image);
+    }
+  }, [image]);
 
   const handleFiles = (files) => {
     const file = files[0];

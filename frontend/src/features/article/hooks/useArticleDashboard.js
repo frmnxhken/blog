@@ -1,32 +1,19 @@
-import { useEffect, useState } from "react";
 import { getArticles } from "@/features/article/api";
+import { useQuery } from "@tanstack/react-query";
 
 const useArticleDashboard = (status, keyword) => {
-  const [articles, setArticles] = useState(null);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
-
-  useEffect(() => {
-    let ignore = true;
-    const fetchArticles = async () => {
-      setLoading(true);
+  return useQuery({
+    queryKey: ["articles_dashboard", status, keyword],
+    queryFn: async () => {
       const response = await getArticles(status, keyword);
       if (response.error) {
-        setError(response.message);
-      } else {
-        setArticles(response.data);
+        throw new Error(response.message);
       }
-      setLoading(false);
-    };
-
-    fetchArticles();
-
-    return () => {
-      ignore = true;
-    };
-  }, [status, keyword]);
-
-  return { articles, loading, error };
+      return response.data;
+    },
+    staleTime: 1000 * 60 * 5,
+    refetchOnWindowFocus: false,
+  });
 };
 
 export default useArticleDashboard;

@@ -1,8 +1,12 @@
 import { useEffect, useState } from "react";
 import { getArticleById, updatePost } from "@/features/article/api";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
+import { useNavigate } from "react-router-dom";
 
-const useArticleEdit = (id) => {
-  const [article, setArticle] = useState(null);
+const useEditArticle = (id) => {
+  const queryClient = useQueryClient();
+  const navigate = useNavigate();
+
   const [loading, setLoading] = useState(true);
   const [formData, setFormData] = useState({
     title: "",
@@ -16,8 +20,6 @@ const useArticleEdit = (id) => {
       try {
         const response = await getArticleById(id);
         const { title, tags, thumbnail, content } = response.data;
-
-        setArticle(response.data);
         setFormData({
           title,
           tags,
@@ -38,18 +40,22 @@ const useArticleEdit = (id) => {
     setFormData((prev) => ({ ...prev, [field]: value }));
   };
 
-  const handleSubmit = async (status) => {
-    const payload = {
-      ...formData,
-      status,
-    };
-
-    try {
+  const mutation = useMutation({
+    mutationFn: async (status) => {
+      const payload = { ...formData, status };
       const response = await updatePost(id, payload);
-      console.log("Updated:", response);
-    } catch (error) {
-      console.error("Failed to update article:", error);
-    }
+      return response.data;
+    },
+    onSuccess: () => {
+      queryClient.invalidateQueries(["articles_dashboard"]);
+      navigate("/dashboard/article", {
+        state: { type: "success", message: "Berhasil diperbarui" },
+      });
+    },
+  });
+
+  const handleSubmit = (status) => {
+    mutation.mutate(status);
   };
 
   return {
@@ -60,4 +66,4 @@ const useArticleEdit = (id) => {
   };
 };
 
-export default useArticleEdit;
+export default useEditArticle;

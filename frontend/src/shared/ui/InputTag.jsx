@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { HiOutlineXMark } from "react-icons/hi2";
 
 const InputTag = ({
@@ -10,6 +10,10 @@ const InputTag = ({
 }) => {
   const [input, setInput] = useState("");
   const [tags, setTags] = useState(value);
+
+  useEffect(() => {
+    setTags(value);
+  }, [value]);
 
   const handleKeyDown = (e) => {
     if (e.key === "Enter" || e.key === delimiter) {

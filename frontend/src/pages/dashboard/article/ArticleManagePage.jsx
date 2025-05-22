@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useLocation } from "react-router-dom";
 import {
   ArticleItem,
   ArticleSearchInput,
@@ -6,23 +7,24 @@ import {
 } from "@/features/article/ui";
 import { useArticleDashboard } from "@/features/article/hooks";
 import Loading from "@/shared/ui/Loading";
+import Alert from "@/shared/ui/Alert";
 
 const ArticleManagePage = () => {
+  const alert = useLocation().state;
   const [status, setStatus] = useState("publish");
   const [keyword, setKeyword] = useState("");
-  const { articles, loading } = useArticleDashboard(status, keyword);
+  const { data, isLoading } = useArticleDashboard(status, keyword);
 
   return (
     <div>
+      {alert && <Alert type={alert?.type} message={alert?.message} />}
       <ArticleSearchInput onSearch={(val) => setKeyword(val)} />
       <ArticleTab onChangeStatus={(val) => setStatus(val)} active={status} />
       <div className="grid grid-cols-1 gap-y-2 mt-6">
-        {loading ? (
+        {isLoading ? (
           <Loading />
         ) : (
-          articles.map((article, index) => (
-            <ArticleItem key={index} {...article} />
-          ))
+          data.map((article, index) => <ArticleItem key={index} {...article} />)
         )}
       </div>
     </div>

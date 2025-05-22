@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { updatePassword } from "../api";
+import { useMutation } from "@tanstack/react-query";
 
 const useChangePassword = () => {
   const [form, setForm] = useState({
@@ -14,16 +15,24 @@ const useChangePassword = () => {
     setForm((prev) => ({ ...prev, [field]: value }));
   };
 
+  const mutation = useMutation({
+    mutationFn: (form) => updatePassword(form),
+    onError: (error) => {
+      setErrors(error.response.data.errors);
+    },
+    onSuccess: () => {
+      setErrors({});
+      setForm({
+        current_password: "",
+        new_password: "",
+        new_password_confirmation: "",
+      });
+    },
+  });
+
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const response = await updatePassword(form);
-    console.log(response);
-
-    if (response.success) {
-      setErrors({});
-    } else {
-      setErrors(response.errors);
-    }
+    mutation.mutate();
   };
 
   return {
