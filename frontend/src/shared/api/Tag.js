@@ -1,11 +1,11 @@
-import { ErrorHandler } from "../lib/ErrorHandler";
 import api from "./Api";
+import { ErrorHandler } from "../lib/ErrorHandler";
 
 export const getTag = async () => {
   try {
     const response = await api.get("/tag");
     return response.data;
   } catch (error) {
-    ErrorHandler(error);
+    return ErrorHandler(error);
   }
 };

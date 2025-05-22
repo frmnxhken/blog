@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import Button from "@/shared/ui/Button";
 import Input from "@/shared/ui/Input";
 
-const SearchInput = ({ onSearch }) => {
+const ArticleSearchInput = ({ onSearch }) => {
   const [keyword, setKeyword] = useState("");
 
   return (
@@ -24,4 +24,4 @@ const SearchInput = ({ onSearch }) => {
   );
 };
 
-export default SearchInput;
+export default ArticleSearchInput;

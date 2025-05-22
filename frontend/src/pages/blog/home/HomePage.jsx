@@ -1,9 +1,9 @@
 import React from "react";
-import Hero from "./Hero";
+import Hero from "./ui/Hero";
 import Loading from "@/shared/ui/Loading";
 import Card from "@/shared/ui/Card";
-import Header from "./Header";
-import { useArticleUserRecent } from "@/features/article/model";
+import Header from "./ui/Header";
+import { useArticleUserRecent } from "@/features/article/hooks";
 
 const HomePage = () => {
   const { data, loading } = useArticleUserRecent();

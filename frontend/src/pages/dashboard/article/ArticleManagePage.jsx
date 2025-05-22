@@ -1,6 +1,10 @@
 import React, { useState } from "react";
-import { SearchInput, Tab, ArticleItem } from "@/features/article/ui";
-import { useArticleDashboard } from "@/features/article/model";
+import {
+  ArticleItem,
+  ArticleSearchInput,
+  ArticleTab,
+} from "@/features/article/ui";
+import { useArticleDashboard } from "@/features/article/hooks";
 import Loading from "@/shared/ui/Loading";
 
 const ArticleManagePage = () => {
@@ -10,8 +14,8 @@ const ArticleManagePage = () => {
 
   return (
     <div>
-      <SearchInput onSearch={(val) => setKeyword(val)} />
-      <Tab onChangeStatus={(val) => setStatus(val)} active={status} />
+      <ArticleSearchInput onSearch={(val) => setKeyword(val)} />
+      <ArticleTab onChangeStatus={(val) => setStatus(val)} active={status} />
       <div className="grid grid-cols-1 gap-y-2 mt-6">
         {loading ? (
           <Loading />

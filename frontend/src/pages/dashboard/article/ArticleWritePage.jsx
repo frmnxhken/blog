@@ -1,9 +1,9 @@
 import React from "react";
-import { useWriteArticle } from "@/features/article/write/model";
+import { useArticleWrite } from "@/features/article/hooks";
 import { ArticleForm } from "@/features/article/ui";
 
-const WriteArticlePage = () => {
-  const { loading, formData, handleChange, handleSubmit } = useWriteArticle();
+const ArticleWritePage = () => {
+  const { loading, formData, handleChange, handleSubmit } = useArticleWrite();
 
   return (
     <ArticleForm
@@ -15,4 +15,4 @@ const WriteArticlePage = () => {
   );
 };
 
-export default WriteArticlePage;
+export default ArticleWritePage;

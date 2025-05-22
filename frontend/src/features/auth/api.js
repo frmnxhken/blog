@@ -6,7 +6,7 @@ export const Authentication = async (payload) => {
     const response = await api.post("/auth", payload);
     return response.data;
   } catch (error) {
-    ErrorHandler(error);
+    return ErrorHandler(error);
   }
 };
 
@@ -15,6 +15,6 @@ export const Deauthentication = async () => {
     const response = await api.post("/deauth");
     return response.data;
   } catch (error) {
-    ErrorHandler(error);
+    return ErrorHandler(error);
   }
 };

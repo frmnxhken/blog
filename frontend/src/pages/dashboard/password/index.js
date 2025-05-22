@@ -1,1 +1,1 @@
-export { default as ChangePasswordPage } from "./ui/ChangePasswordPage";
+export { default as ChangePasswordPage } from "./ChangePasswordPage";

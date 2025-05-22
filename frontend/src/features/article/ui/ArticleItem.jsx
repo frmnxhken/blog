@@ -1,16 +1,9 @@
-import { deletePost } from "@/features/article/api";
 import React from "react";
 import { Link } from "react-router-dom";
+import useArticleDelete from "../hooks/useArticleDelete";
 
 const ArticleItem = ({ id, title, date, thumbnail }) => {
-  const handleDelete = async () => {
-    try {
-      const response = await deletePost(id);
-      console.log(response);
-    } catch (error) {
-      console.log(error);
-    }
-  };
+  const { handleDelete } = useArticleDelete(id);
   return (
     <div className="w-full border-b border-zinc-200 py-2">
       <div className="flex items-center gap-x-4">

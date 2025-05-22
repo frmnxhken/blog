@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { createPost } from "@/features/article/api";
 
-const useWriteArticle = () => {
+const useArticleWrite = () => {
   const [formData, setFormData] = useState({
     title: "",
     tags: [],
@@ -34,4 +34,4 @@ const useWriteArticle = () => {
   };
 };
 
-export default useWriteArticle;
+export default useArticleWrite;

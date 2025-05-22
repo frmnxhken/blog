@@ -1,11 +1,11 @@
 import React from "react";
 import { useParams } from "react-router-dom";
-import { useEditArticle } from "@/features/article/edit/model";
+import { useArticleEdit } from "@/features/article/hooks";
 import { ArticleForm } from "@/features/article/ui";
 
-const EditArticlePage = () => {
+const ArticleEditPage = () => {
   const { id } = useParams();
-  const { loading, formData, handleChange, handleSubmit } = useEditArticle(id);
+  const { loading, formData, handleChange, handleSubmit } = useArticleEdit(id);
 
   return (
     <ArticleForm
@@ -17,4 +17,4 @@ const EditArticlePage = () => {
   );
 };
 
-export default EditArticlePage;
+export default ArticleEditPage;

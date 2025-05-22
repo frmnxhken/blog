@@ -12,7 +12,7 @@ Route::post('/auth', [UserController::class, 'authentication'])->name('login');
 
 Route::prefix('article')->group(function () {
     Route::get('/', [ArticleController::class, "index"]);
-    Route::get('/r  ecent', [ArticleController::class, "recent"]);
+    Route::get('/recent', [ArticleController::class, "recent"]);
     Route::get('/{slug}', [ArticleController::class, "show"]);
 });
 

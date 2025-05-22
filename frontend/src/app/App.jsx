@@ -9,8 +9,8 @@ import LoginPage from "@/pages/auth/LoginPage";
 import ProtectedRoute from "./routes/ProtectedRoute";
 import {
   ArticleManagePage,
-  EditArticlePage,
-  WriteArticlePage,
+  ArticleEditPage,
+  ArticleWritePage,
 } from "@/pages/dashboard/article";
 import { ArticlePage } from "@/pages/blog/article";
 import { ArticleDetailPage } from "@/pages/blog/detail";
@@ -28,8 +28,8 @@ const App = () => {
           <Route path="/dashboard" element={<DashboardLayout />}>
             <Route index element={<DashboardPage />} />
             <Route path="article" element={<ArticleManagePage />} />
-            <Route path="article/:id/edit" element={<EditArticlePage />} />
-            <Route path="write" element={<WriteArticlePage />} />
+            <Route path="article/:id/edit" element={<ArticleEditPage />} />
+            <Route path="write" element={<ArticleWritePage />} />
             <Route path="profile" element={<EditProfilePage />} />
             <Route path="password" element={<ChangePasswordPage />} />
           </Route>

@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { getArticleById, updatePost } from "@/features/article/api";
 
-const useEditArticle = (id) => {
+const useArticleEdit = (id) => {
   const [article, setArticle] = useState(null);
   const [loading, setLoading] = useState(true);
   const [formData, setFormData] = useState({
@@ -60,4 +60,4 @@ const useEditArticle = (id) => {
   };
 };
 
-export default useEditArticle;
+export default useArticleEdit;

@@ -1,12 +1,12 @@
-import { ErrorHandler } from "../lib/ErrorHandler";
 import api from "./Api";
+import { ErrorHandler } from "../lib/ErrorHandler";
 
 export const getArticles = async (tag) => {
   try {
     const response = await api.get("/article");
     return response.data;
   } catch (error) {
-    ErrorHandler(error);
+    return ErrorHandler(error);
   }
 };
 
@@ -15,7 +15,7 @@ export const getArticleRecent = async () => {
     const response = await api.get("/article/recent");
     return response.data;
   } catch (error) {
-    ErrorHandler(error);
+    return ErrorHandler(error);
   }
 };
 
@@ -24,7 +24,7 @@ export const getArticleDetail = async (slug) => {
     const response = await api.get("/article/" + slug);
     return response.data;
   } catch (error) {
-    ErrorHandler(error);
+    return ErrorHandler(error);
   }
 };
 
@@ -33,6 +33,6 @@ export const getArticleByTag = async (tag) => {
     const response = await api.get("/tag/" + tag);
     return response.data;
   } catch (error) {
-    ErrorHandler(error);
+    return ErrorHandler(error);
   }
 };

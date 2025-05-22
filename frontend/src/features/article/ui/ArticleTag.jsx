@@ -1,20 +1,9 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import Button from "@/shared/ui/Button";
-import { getTag } from "@/shared/api/Tag";
+import { useArticleTag } from "../hooks";
 
-const Tag = ({ onChangeTag, active }) => {
-  const [data, setData] = useState(null);
-
-  useEffect(() => {
-    const fetchTags = async () => {
-      const response = await getTag();
-      if (!response.error) {
-        setData(response.data);
-      }
-    };
-
-    fetchTags();
-  }, []);
+const ArticleTag = ({ onChangeTag, active }) => {
+  const { data } = useArticleTag();
   return (
     <div className="flex flex-wrap gap-2 mt-12">
       <Button
@@ -36,4 +25,4 @@ const Tag = ({ onChangeTag, active }) => {
   );
 };
 
-export default Tag;
+export default ArticleTag;

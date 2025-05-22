@@ -8,7 +8,7 @@ export const getArticles = async (status, keyword) => {
     );
     return response.data;
   } catch (error) {
-    ErrorHandler(error);
+    return ErrorHandler(error);
   }
 };
 
@@ -17,7 +17,7 @@ export const getArticleById = async (id) => {
     const response = await api.get("/post/" + id);
     return response.data;
   } catch (error) {
-    ErrorHandler(error);
+    return ErrorHandler(error);
   }
 };
 
@@ -34,7 +34,7 @@ export const createPost = async (payload) => {
     const response = await api.post("/post", formData);
     return response.data;
   } catch (error) {
-    ErrorHandler(error);
+    return ErrorHandler(error);
   }
 };
 
@@ -52,7 +52,7 @@ export const updatePost = async (id, payload) => {
     const response = await api.post("/post/" + id, formData);
     return response.data;
   } catch (error) {
-    ErrorHandler(error);
+    return ErrorHandler(error);
   }
 };
 
@@ -61,6 +61,6 @@ export const deletePost = async (id) => {
     const response = await api.delete("/post/" + id);
     return response.data;
   } catch (error) {
-    ErrorHandler(error);
+    return ErrorHandler(error);
   }
 };

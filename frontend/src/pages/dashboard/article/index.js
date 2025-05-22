@@ -1,3 +1,3 @@
-export { default as ArticleManagePage } from "./manage";
-export { default as EditArticlePage } from "./edit";
-export { default as WriteArticlePage } from "./write";
+export { default as ArticleManagePage } from "./ArticleManagePage";
+export { default as ArticleWritePage } from "./ArticleWritePage";
+export { default as ArticleEditPage } from "./ArticleEditPage";

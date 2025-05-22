@@ -1,5 +1,5 @@
 import React from "react";
-import { SearchInput } from "@/features/article/ui";
+import { ArticleSearchInput } from "@/features/article/ui";
 
 const Hero = () => {
   return (
@@ -9,7 +9,7 @@ const Hero = () => {
           Upgrade Your Knowledge In The Future
         </h1>
         <div className="mt-12">
-          <SearchInput />
+          <ArticleSearchInput />
         </div>
       </div>
     </div>
