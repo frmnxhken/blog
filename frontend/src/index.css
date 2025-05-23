@@ -30,3 +30,13 @@ h4.ce-header {
 .ce-toolbar__content {
     max-width: 85%;
 }
+
+@keyframes progressBar {
+    from {
+        width: 100%;
+    }
+
+    to {
+        width: 0%;
+    }
+}
