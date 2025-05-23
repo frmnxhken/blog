@@ -1,10 +1,12 @@
 import React, { useState, useRef, useEffect } from "react";
+import Feedback from "./Feedback";
 
 const InputImage = ({
   label = "Your Thumbnail",
   maxHeight = 400,
   onImageChange = () => {},
   image,
+  feedback,
   previewClassName = "w-full h-full object-cover rounded-lg",
 }) => {
   const [preview, setPreview] = useState(image);
@@ -111,6 +113,7 @@ const InputImage = ({
           onChange={handleInputChange}
         />
       </div>
+      {feedback && <Feedback text={feedback} />}
     </div>
   );
 };

@@ -1,11 +1,13 @@
 import React, { useEffect, useState } from "react";
 import { HiOutlineXMark } from "react-icons/hi2";
+import Feedback from "./Feedback";
 
 const InputTag = ({
   value = [],
   onChange,
   delimiter = " ",
   label,
+  feedback,
   className,
 }) => {
   const [input, setInput] = useState("");
@@ -68,6 +70,7 @@ const InputTag = ({
           className="flex-1 outline-none text-sm py-1"
         />
       </div>
+      {feedback && <Feedback text={feedback} />}
     </div>
   );
 };

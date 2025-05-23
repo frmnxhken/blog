@@ -5,12 +5,14 @@ import { ArticleForm } from "@/features/article/ui";
 
 const EditArticlePage = () => {
   const { id } = useParams();
-  const { loading, formData, handleChange, handleSubmit } = useArticleEdit(id);
+  const { loading, formData, errors, handleChange, handleSubmit } =
+    useArticleEdit(id);
 
   return (
     <ArticleForm
       loading={loading}
       formData={formData}
+      errors={errors}
       handleChange={handleChange}
       handleSubmit={handleSubmit}
     />

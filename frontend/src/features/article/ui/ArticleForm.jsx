@@ -6,7 +6,13 @@ import InputTag from "@/shared/ui/InputTag";
 import Loading from "@/shared/ui/Loading";
 import React from "react";
 
-const ArticleForm = ({ loading, handleSubmit, handleChange, formData }) => {
+const ArticleForm = ({
+  loading,
+  handleSubmit,
+  handleChange,
+  formData,
+  errors,
+}) => {
   return (
     <div>
       <div className="flex flex-row-reverse mb-6 w-full">
@@ -24,6 +30,7 @@ const ArticleForm = ({ loading, handleSubmit, handleChange, formData }) => {
             onChange={(e) => handleChange("title", e.target.value)}
             placeholder="Title article..."
             className="w-full"
+            feedback={errors?.title}
           />
         )}
 
@@ -32,6 +39,7 @@ const ArticleForm = ({ loading, handleSubmit, handleChange, formData }) => {
             value={formData.tags}
             onChange={(val) => handleChange("tags", val)}
             label="Tag article"
+            feedback={errors?.tags}
           />
         )}
       </div>
@@ -46,6 +54,7 @@ const ArticleForm = ({ loading, handleSubmit, handleChange, formData }) => {
               formData.thumbnail &&
               "http://127.0.0.1:8000/" + formData.thumbnail
             }
+            feedback={errors?.thumbnail}
           />
         )}
       </div>

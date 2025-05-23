@@ -6,6 +6,7 @@ import { useNavigate } from "react-router-dom";
 const useArticleWrite = () => {
   const navigate = useNavigate();
   const queryClient = useQueryClient();
+  const [errors, setErrors] = useState({});
   const [formData, setFormData] = useState({
     title: "",
     tags: [],
@@ -18,14 +19,9 @@ const useArticleWrite = () => {
   };
 
   const mutation = useMutation({
-    mutationFn: async (status) => {
-      const payload = { ...formData, status };
-      const response = await createPost(payload);
-
-      if (response.error) {
-        throw new Error(response.message);
-      }
-      return response.data;
+    mutationFn: (payload) => createPost(payload),
+    onError: (error) => {
+      setErrors(error.response.data.errors);
     },
     onSuccess: () => {
       queryClient.invalidateQueries(["articles_dashboard"]);
@@ -42,11 +38,12 @@ const useArticleWrite = () => {
   });
 
   const handleSubmit = (status) => {
-    mutation.mutate(status);
+    mutation.mutate({ ...formData, status });
   };
 
   return {
     formData,
+    errors,
     handleChange,
     handleSubmit,
     ...mutation,

@@ -8,6 +8,7 @@ const useEditArticle = (id) => {
   const navigate = useNavigate();
 
   const [loading, setLoading] = useState(true);
+  const [errors, setErrors] = useState({});
   const [formData, setFormData] = useState({
     title: "",
     tags: null,
@@ -41,10 +42,9 @@ const useEditArticle = (id) => {
   };
 
   const mutation = useMutation({
-    mutationFn: async (status) => {
-      const payload = { ...formData, status };
-      const response = await updatePost(id, payload);
-      return response.data;
+    mutationFn: (payload) => updatePost(id, payload),
+    onError: (error) => {
+      setErrors(error.response.data.errors);
     },
     onSuccess: () => {
       queryClient.invalidateQueries(["articles_dashboard"]);
@@ -55,12 +55,13 @@ const useEditArticle = (id) => {
   });
 
   const handleSubmit = (status) => {
-    mutation.mutate(status);
+    mutation.mutate({ ...formData, status });
   };
 
   return {
     loading,
     formData,
+    errors,
     handleChange,
     handleSubmit,
   };

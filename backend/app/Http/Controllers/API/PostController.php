@@ -8,6 +8,7 @@ use App\Models\Post;
 use App\Models\PostImage;
 use App\Models\Tag;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Str;
 
 class PostController extends Controller
@@ -34,6 +35,17 @@ class PostController extends Controller
 
     public function store(Request $request)
     {
+        $validation = Validator::make($request->all(), [
+            'title' => 'required',
+            'thumbnail' => 'required',
+            'tags' => 'required',
+            'status' => 'required',
+        ]);
+
+        if ($validation->fails()) {
+            return response()->json(['errors' => $validation->errors()], 422);
+        }
+
         $thumbnailPath = null;
         if ($request->hasFile('thumbnail')) {
             $filename = time() . '_' . $request->file('thumbnail')->getClientOriginalName();
@@ -103,6 +115,16 @@ class PostController extends Controller
 
     public function update(Request $request, Post $post)
     {
+        $validation = Validator::make($request->all(), [
+            'title' => 'required',
+            'tags' => 'required',
+            'status' => 'required',
+        ]);
+
+        if ($validation->fails()) {
+            return response()->json(['errors' => $validation->errors()], 422);
+        }
+
         if ($request->hasFile('thumbnail')) {
             if ($post->thumbnail && file_exists(public_path($post->thumbnail))) {
                 unlink(public_path($post->thumbnail));
