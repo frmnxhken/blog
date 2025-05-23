@@ -8,12 +8,16 @@ import {
 import { useArticleDashboard } from "@/features/article/hooks";
 import Loading from "@/shared/ui/Loading";
 import Alert from "@/shared/ui/Alert";
+import Pagination from "@/shared/ui/Pagination";
 
 const ArticleManagePage = () => {
   const alert = useLocation().state;
   const [status, setStatus] = useState("publish");
   const [keyword, setKeyword] = useState("");
-  const { data, isLoading } = useArticleDashboard(status, keyword);
+  const { data, isLoading, pagination, page, setPage } = useArticleDashboard(
+    status,
+    keyword
+  );
 
   return (
     <div>
@@ -27,6 +31,13 @@ const ArticleManagePage = () => {
           data.map((article, index) => <ArticleItem key={index} {...article} />)
         )}
       </div>
+      {pagination.last_page > 1 && (
+        <Pagination
+          page={page}
+          setPage={setPage}
+          totalPages={pagination.last_page}
+        />
+      )}
     </div>
   );
 };

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
+use App\Http\Resources\PostCollection;
 use App\Http\Resources\PostResource;
 use App\Models\Post;
 use App\Models\PostImage;
@@ -24,12 +25,9 @@ class PostController extends Controller
             ->when($key, function ($query, $key) {
                 return $query->where('title', 'like', '%' . $key . '%');
             })
-            ->get();
+            ->paginate(10);
 
-        return response()->json([
-            'message' => 'Articles',
-            'data' => $articles
-        ]);
+        return new PostCollection($articles);
     }
 
 

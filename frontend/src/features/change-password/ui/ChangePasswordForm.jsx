@@ -1,7 +1,7 @@
 import React from "react";
 import Button from "@/shared/ui/Button";
 import Input from "@/shared/ui/Input";
-import useChangePassword from "../hooks/useChangePassword";
+import { useChangePassword } from "../hooks";
 
 const ChangePasswordForm = () => {
   const { form, errors, handleInput, handleSubmit } = useChangePassword();

@@ -1,7 +1,7 @@
 import React from "react";
 import Input from "@/shared/ui/Input";
 import Button from "@/shared/ui/Button";
-import useEditProfile from "../hooks/useEditProfile";
+import { useEditProfile } from "../hooks";
 
 const EditProfileForm = () => {
   const { errors, handleInput, handleSubmit } = useEditProfile();

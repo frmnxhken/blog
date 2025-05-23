@@ -3,9 +3,9 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { DashboardLayout, MainLayout } from "./layout";
 import { HomePage } from "@/pages/blog/home";
 import { DashboardPage } from "@/pages/dashboard/home";
-import EditProfilePage from "@/pages/dashboard/profile/EditProfilePage";
+import { EditProfilePage } from "@/pages/dashboard/profile";
 import { ChangePasswordPage } from "@/pages/dashboard/password";
-import LoginPage from "@/pages/auth/LoginPage";
+import { LoginPage } from "@/pages/auth/LoginPage";
 import ProtectedRoute from "./routes/ProtectedRoute";
 import {
   ArticleManagePage,

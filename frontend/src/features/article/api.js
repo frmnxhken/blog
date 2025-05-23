@@ -1,7 +1,9 @@
 import api from "@/shared/api/Api";
 
-export const getArticles = async (status, keyword) => {
-  const response = await api.get(`/post?status=${status}&key=${keyword}`);
+export const getArticles = async (status, keyword, page) => {
+  const response = await api.get(
+    `/post?status=${status}&key=${keyword}&page=${page}`
+  );
   return response.data;
 };
 
