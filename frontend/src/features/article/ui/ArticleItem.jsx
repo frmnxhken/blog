@@ -19,7 +19,10 @@ const ArticleItem = ({ id, title, date, thumbnail }) => {
             <Link to={id + "/edit"} className="text-sm">
               Edit
             </Link>
-            <button onClick={handleDelete} className="text-sm text-rose-600">
+            <button
+              onClick={handleDelete}
+              className="cursor-pointer text-sm text-rose-600"
+            >
               Delete
             </button>
           </div>
