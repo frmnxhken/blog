@@ -1,10 +1,10 @@
+import React from "react";
 import Editor from "@/features/editor/ui/Editor";
 import Button from "@/shared/ui/Button";
 import Input from "@/shared/ui/Input";
 import InputImage from "@/shared/ui/InputImage";
 import InputTag from "@/shared/ui/InputTag";
 import Loading from "@/shared/ui/Loading";
-import React from "react";
 
 const ArticleForm = ({
   loading,

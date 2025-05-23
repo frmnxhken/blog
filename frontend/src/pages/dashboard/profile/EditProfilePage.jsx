@@ -1,6 +1,6 @@
 import React from "react";
-import { EditProfileForm } from "@/features/edit-profile/ui";
 import { useLocation } from "react-router-dom";
+import { EditProfileForm } from "@/features/edit-profile/ui";
 
 const EditProfilePage = () => {
   const alert = useLocation().state;

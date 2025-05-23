@@ -1,7 +1,9 @@
 import React from "react";
-import Hero from "./ui/Hero";
+
 import Loading from "@/shared/ui/Loading";
 import Card from "@/shared/ui/Card";
+
+import Hero from "./ui/Hero";
 import Header from "./ui/Header";
 import { useArticleUserRecent } from "@/features/article/hooks";
 

@@ -1,8 +1,10 @@
 import React from "react";
 import { useParams } from "react-router-dom";
 import EditorJsRenderer from "editorjs-react-renderer";
+
 import Header from "./ui/Header";
 import Loading from "@/shared/ui/Loading";
+
 import { customRenderers } from "@/shared/lib/Renderer";
 import { useArticleUserDetail } from "@/features/article/hooks";
 

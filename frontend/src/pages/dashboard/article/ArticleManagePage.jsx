@@ -1,14 +1,16 @@
 import React, { useState } from "react";
 import { useLocation } from "react-router-dom";
+
+import Loading from "@/shared/ui/Loading";
+import Alert from "@/shared/ui/Alert";
+import Pagination from "@/shared/ui/Pagination";
+
 import {
   ArticleItem,
   ArticleSearchInput,
   ArticleTab,
 } from "@/features/article/ui";
 import { useArticleDashboard } from "@/features/article/hooks";
-import Loading from "@/shared/ui/Loading";
-import Alert from "@/shared/ui/Alert";
-import Pagination from "@/shared/ui/Pagination";
 
 const ArticleManagePage = () => {
   const alert = useLocation().state;
@@ -20,7 +22,7 @@ const ArticleManagePage = () => {
   );
 
   return (
-    <div>
+    <>
       {alert && <Alert type={alert?.type} message={alert?.message} />}
       <ArticleSearchInput onSearch={(val) => setKeyword(val)} />
       <ArticleTab onChangeStatus={(val) => setStatus(val)} active={status} />
@@ -38,7 +40,7 @@ const ArticleManagePage = () => {
           totalPages={pagination.last_page}
         />
       )}
-    </div>
+    </>
   );
 };
 

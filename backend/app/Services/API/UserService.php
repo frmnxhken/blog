@@ -17,7 +17,7 @@ class UserService
         ]);
 
         if ($validation->fails()) {
-            return ['success' => false, 'errors' => $validation->errors()];
+            return ['success' => false, 'errors' => $validation->errors(), 422];
         }
 
         if (!Auth::attempt($request->only(['email', 'password']))) {

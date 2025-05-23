@@ -1,10 +1,12 @@
 import React from "react";
+
 import Card from "@/shared/ui/Card";
-import { ArticleTag } from "@/features/article/ui";
 import Loading from "@/shared/ui/Loading";
-import Header from "./ui/Header";
-import { useArticleUser } from "@/features/article/hooks";
 import Pagination from "@/shared/ui/Pagination";
+
+import Header from "./ui/Header";
+import { ArticleTag } from "@/features/article/ui";
+import { useArticleUser } from "@/features/article/hooks";
 
 const ArticlePage = () => {
   const { data, pagination, isLoading, tag, setTag, page, setPage } =

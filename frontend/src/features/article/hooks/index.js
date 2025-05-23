@@ -4,4 +4,5 @@ export { default as useArticleUserRecent } from "./useArticleUserRecent";
 export { default as useArticleUserDetail } from "./useArticleUserDetail";
 export { default as useArticleEdit } from "./useArticleEdit";
 export { default as useArticleWrite } from "./useArticleWrite";
+export { default as useArticleDelete } from "./useArticleDelete";
 export { default as useArticleTag } from "./useArticleTag";

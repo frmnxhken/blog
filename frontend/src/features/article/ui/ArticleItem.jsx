@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import useArticleDelete from "../hooks/useArticleDelete";
+import { useArticleDelete } from "../hooks";
 
 const ArticleItem = ({ id, title, date, thumbnail }) => {
   const { handleDelete } = useArticleDelete(id);

@@ -1,7 +1,7 @@
 import React from "react";
 import { useParams } from "react-router-dom";
-import { useArticleEdit } from "@/features/article/hooks";
 import { ArticleForm } from "@/features/article/ui";
+import { useArticleEdit } from "@/features/article/hooks";
 
 const EditArticlePage = () => {
   const { id } = useParams();
