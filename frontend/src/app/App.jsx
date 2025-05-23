@@ -14,10 +14,12 @@ import {
 } from "@/pages/dashboard/article";
 import { ArticlePage } from "@/pages/blog/article";
 import { ArticleDetailPage } from "@/pages/blog/detail";
+import ScrollToTop from "@/shared/lib/ScrollToTop";
 
 const App = () => {
   return (
     <BrowserRouter>
+      <ScrollToTop />
       <Routes>
         <Route path="/" element={<MainLayout />}>
           <Route index element={<HomePage />} />

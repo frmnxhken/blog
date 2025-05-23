@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
+use App\Http\Resources\ArticleCollection;
 use App\Http\Resources\ArticleDetailResource;
 use App\Http\Resources\ArticleResource;
 use App\Models\Post;
@@ -11,11 +12,8 @@ class ArticleController extends Controller
 {
     public function index()
     {
-        $articles = Post::with('tags')->where('status', 'publish')->get();
-        return response()->json([
-            'message' => 'List Article',
-            'data' => ArticleResource::collection($articles)
-        ]);
+        $articles = Post::with('tags')->where('status', 'publish')->paginate(1);
+        return new ArticleCollection($articles);
     }
 
     public function recent()

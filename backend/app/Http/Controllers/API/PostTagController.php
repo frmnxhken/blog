@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
-use App\Http\Resources\ArticleResource;
+use App\Http\Resources\ArticleCollection;
 use App\Models\Post;
 
 class PostTagController extends Controller
@@ -13,11 +13,8 @@ class PostTagController extends Controller
 
         $articles = Post::where('status', 'publish')->whereHas('tags', function ($query) use ($tag) {
             $query->where('name', $tag);
-        })->get();
+        })->paginate(1);
 
-        return response()->json([
-            'message' => 'Article by tag ' . $tag,
-            'data' => ArticleResource::collection($articles)
-        ]);
+        return new ArticleCollection($articles);
     }
 }

@@ -1,31 +1,38 @@
 import { useEffect, useState } from "react";
+import { useQuery } from "@tanstack/react-query";
 import { getArticleByTag, getArticles } from "@/shared/api/Article";
 
 const useArticleUser = () => {
-  const [data, setData] = useState(null);
-  const [loading, setLoading] = useState(true);
   const [tag, setTag] = useState("all");
-
-  const fetchData = async () => {
-    setLoading(true);
-    const response =
-      tag === "all" ? await getArticles() : await getArticleByTag(tag);
-    if (!response.error) {
-      setData(response.data);
-    }
-    setLoading(false);
-  };
+  const [page, setPage] = useState(1);
 
   useEffect(() => {
-    setLoading(true);
-    fetchData();
-  }, [tag]);
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  }, [page]);
+
+  const fetchFn = async () => {
+    return tag === "all"
+      ? await getArticles(page)
+      : await getArticleByTag(tag, page);
+  };
+
+  const { data, isLoading } = useQuery({
+    queryKey: ["articles", tag, page],
+    queryFn: fetchFn,
+    keepPreviousData: true,
+  });
 
   return {
-    data,
+    data: data?.data || [],
+    pagination: data?.meta || {},
     tag,
-    setTag,
-    loading,
+    setTag: (newTag) => {
+      setTag(newTag);
+      setPage(1);
+    },
+    page,
+    setPage,
+    isLoading,
   };
 };
 
