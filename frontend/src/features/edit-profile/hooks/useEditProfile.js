@@ -1,18 +1,18 @@
 import { useState } from "react";
-import { updatePassword } from "../api";
 import { useMutation } from "@tanstack/react-query";
+import { updateProfile } from "../api";
 import { useLocation, useNavigate } from "react-router-dom";
 
-const useChangePassword = () => {
+const useEditProfile = () => {
   const location = useLocation();
   const navigate = useNavigate();
 
   const [form, setForm] = useState({
-    current_password: "",
-    new_password: "",
-    new_password_confirmation: "",
+    instagram: "",
+    facebook: "",
+    twitter: "",
+    youtube: "",
   });
-
   const [errors, setErrors] = useState({});
 
   const handleInput = (field, value) => {
@@ -20,19 +20,20 @@ const useChangePassword = () => {
   };
 
   const mutation = useMutation({
-    mutationFn: (form) => updatePassword(form),
+    mutationFn: (form) => updateProfile(form),
     onError: (error) => {
       setErrors(error.response.data.errors);
     },
     onSuccess: () => {
       setErrors({});
       setForm({
-        current_password: "",
-        new_password: "",
-        new_password_confirmation: "",
+        instagram: "",
+        facebook: "",
+        twitter: "",
+        youtube: "",
       });
       navigate(location.pathname, {
-        state: { type: "success", message: "Password changed successfully!" },
+        state: { type: "success", message: "Profile changed successfully!" },
       });
     },
   });
@@ -50,4 +51,4 @@ const useChangePassword = () => {
   };
 };
 
-export default useChangePassword;
+export default useEditProfile;
