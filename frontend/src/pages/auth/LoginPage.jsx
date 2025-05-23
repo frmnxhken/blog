@@ -12,7 +12,7 @@ const LoginPage = () => {
         <div className="max-w-[400px] w-[80%]">
           <h1 className="text-3xl font-semibold text-center mb-12">Login</h1>
           {alert && <Alert type={alert?.type} message={alert?.message} />}
-          <LoginForm />;
+          <LoginForm />
         </div>
       </div>
     </>

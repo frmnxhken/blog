@@ -22,10 +22,10 @@ class EditProfileRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'instagram' => 'required',
-            'facebook' => 'required',
-            'youtube' => 'required',
-            'twitter' => 'required',
+            'instagram' => 'url',
+            'facebook' => 'url',
+            'youtube' => 'url',
+            'twitter' => 'url',
         ];
     }
 }

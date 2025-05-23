@@ -61,7 +61,6 @@ class UserService
     {
         $user = Auth::user();
         $user->update($request->all());
-
-        return ['success' => true];
+        return ['user' => $user];
     }
 }

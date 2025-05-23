@@ -52,7 +52,7 @@ class UserController extends Controller
 
     public function updateProfile(EditProfileRequest $request)
     {
-        $this->service->updateProfile($request);
-        return response()->json(['success' => true]);
+        $user = $this->service->updateProfile($request);
+        return response()->json($user);
     }
 }

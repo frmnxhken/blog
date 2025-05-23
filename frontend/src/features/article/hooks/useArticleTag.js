@@ -1,21 +1,17 @@
-import { useEffect, useState } from "react";
 import { getTag } from "@/shared/api/Tag";
+import { useQuery } from "@tanstack/react-query";
 
 const useArticleTag = () => {
-  const [data, setData] = useState(null);
+  const { data } = useQuery({
+    queryKey: ["tags"],
+    queryFn: getTag,
+    staleTime: 1000 * 60 * 5,
+    refetchOnWindowFocus: false,
+  });
 
-  useEffect(() => {
-    const fetchTags = async () => {
-      const response = await getTag();
-      if (!response.error) {
-        setData(response.data);
-      }
-    };
-
-    fetchTags();
-  }, []);
-
-  return { data };
+  return {
+    data: data?.data || null,
+  };
 };
 
 export default useArticleTag;

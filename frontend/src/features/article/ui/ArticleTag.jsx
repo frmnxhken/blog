@@ -5,7 +5,7 @@ import { useArticleTag } from "../hooks";
 const ArticleTag = ({ onChangeTag, active }) => {
   const { data } = useArticleTag();
   return (
-    <div className="flex flex-wrap gap-2 mt-12">
+    <div className="flex flex-nowrap gap-2 overflow-auto mt-12">
       <Button
         onClick={() => onChangeTag("all")}
         variant={active === "all" ? "primary" : "secondary"}

@@ -2,16 +2,18 @@ import { useState } from "react";
 import { useMutation } from "@tanstack/react-query";
 import { updateProfile } from "../api";
 import { useLocation, useNavigate } from "react-router-dom";
+import { useAuth } from "@/app/contexts/AuthContext";
 
 const useEditProfile = () => {
+  const { user } = useAuth();
   const location = useLocation();
   const navigate = useNavigate();
 
   const [form, setForm] = useState({
-    instagram: "",
-    facebook: "",
-    twitter: "",
-    youtube: "",
+    instagram: user.instagram,
+    facebook: user.facebook,
+    twitter: user.twitter,
+    youtube: user.youtube,
   });
   const [errors, setErrors] = useState({});
 
@@ -24,14 +26,9 @@ const useEditProfile = () => {
     onError: (error) => {
       setErrors(error.response.data.errors);
     },
-    onSuccess: () => {
+    onSuccess: (data) => {
       setErrors({});
-      setForm({
-        instagram: "",
-        facebook: "",
-        twitter: "",
-        youtube: "",
-      });
+      localStorage.setItem("user", JSON.stringify(data.user));
       navigate(location.pathname, {
         state: { type: "success", message: "Profile changed successfully!" },
       });

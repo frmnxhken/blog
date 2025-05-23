@@ -3,17 +3,21 @@
 namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
-use App\Http\Resources\TagResource;
-use App\Models\Tag;
+use App\Services\API\TagService;
 
 class TagController extends Controller
 {
+    protected $service;
+    public function __construct(TagService $service)
+    {
+        $this->service = $service;
+    }
     public function index()
     {
-        $tags = Tag::get();
+        $data = $this->service->getTagPublish();
         return response()->json([
             'message' => 'List of tag',
-            'data' => TagResource::collection($tags)
+            ...$data
         ]);
     }
 }

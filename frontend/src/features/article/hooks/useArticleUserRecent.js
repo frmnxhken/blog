@@ -1,24 +1,18 @@
 import { getArticleRecent } from "@/shared/api/Article";
-import { useEffect, useState } from "react";
+import { useQuery } from "@tanstack/react-query";
 
 const useArticleUserRecent = () => {
-  const [data, setData] = useState(null);
-  const [loading, setLoading] = useState(true);
+  const { data, isLoading, isError, error } = useQuery({
+    queryKey: ["articles_recent"],
+    queryFn: getArticleRecent,
+    staleTime: 1000 * 60 * 5,
+    refetchOnWindowFocus: false,
+  });
 
-  useEffect(() => {
-    setLoading(true);
-    const fetchArticleRecent = async () => {
-      const response = await getArticleRecent();
-      if (!response.error) {
-        setData(response.data);
-        setLoading(false);
-      }
-    };
-
-    fetchArticleRecent();
-  }, []);
-
-  return { data, loading };
+  return {
+    data: data?.data || [],
+    isLoading,
+  };
 };
 
 export default useArticleUserRecent;

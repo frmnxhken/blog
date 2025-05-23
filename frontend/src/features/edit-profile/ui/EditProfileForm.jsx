@@ -4,13 +4,14 @@ import Button from "@/shared/ui/Button";
 import { useEditProfile } from "../hooks";
 
 const EditProfileForm = () => {
-  const { errors, handleInput, handleSubmit } = useEditProfile();
+  const { form, errors, handleInput, handleSubmit } = useEditProfile();
 
   return (
     <form onSubmit={handleSubmit}>
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-8 gap-y-4 mb-6">
         <Input
           name="instagram"
+          value={form.instagram}
           onChange={(e) => handleInput("instagram", e.target.value)}
           label="Instagram"
           placeholder="Link your Instagram"
@@ -18,6 +19,7 @@ const EditProfileForm = () => {
         />
         <Input
           name="facebook"
+          value={form.facebook}
           onChange={(e) => handleInput("facebook", e.target.value)}
           label="Facebook"
           placeholder="Link your Facebook"
@@ -25,6 +27,7 @@ const EditProfileForm = () => {
         />
         <Input
           name="twitter"
+          value={form.twitter}
           onChange={(e) => handleInput("twitter", e.target.value)}
           label="Twitter"
           placeholder="Link your twitter"
@@ -32,6 +35,7 @@ const EditProfileForm = () => {
         />
         <Input
           name="youtube"
+          value={form.youtube}
           onChange={(e) => handleInput("youtube", e.target.value)}
           label="Youtube"
           placeholder="Link your Youtube"

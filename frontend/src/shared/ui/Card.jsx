@@ -20,7 +20,7 @@ const Card = ({ title, thumbnail, date, slug, tags }) => {
               <Badge text={tag} key={index} />
             ))}
           </div>
-          <h3 className="text-xl sm:text-2xl font-bold">{title}</h3>
+          <h3 className="text-xl sm:text-2xl font-bold capitalize">{title}</h3>
         </div>
         <div className="flex justify-between items-center">
           <p className="text-sm text-zinc-500">{date}</p>

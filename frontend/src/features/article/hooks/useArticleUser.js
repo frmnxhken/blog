@@ -7,7 +7,7 @@ const useArticleUser = () => {
   const [page, setPage] = useState(1);
 
   useEffect(() => {
-    window.scrollTo({ top: 0, behavior: "smooth" });
+    window.scrollTo({ top: 0 });
   }, [page]);
 
   const fetchFn = async () => {
