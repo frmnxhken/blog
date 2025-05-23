@@ -3,34 +3,29 @@
 namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
-use App\Http\Resources\ArticleCollection;
-use App\Http\Resources\ArticleDetailResource;
-use App\Http\Resources\ArticleResource;
-use App\Models\Post;
+use App\Services\API\ArticleService;
 
 class ArticleController extends Controller
 {
+    protected $service;
+
+    public function __construct(ArticleService $service)
+    {
+        $this->service = $service;
+    }
+
     public function index()
     {
-        $articles = Post::with('tags')->where('status', 'publish')->paginate(1);
-        return new ArticleCollection($articles);
+        return $this->service->getArticles();
     }
 
     public function recent()
     {
-        $articles = Post::with('tags')->where('status', 'publish')->limit(6)->get();
-        return response()->json([
-            'message' => 'List Article',
-            'data' => ArticleResource::collection($articles)
-        ]);
+        return $this->service->getArticleRecent();
     }
 
     public function show($slug)
     {
-        $article = Post::with('tags')->where('slug', $slug)->first();
-        return response()->json([
-            'message' => 'Detail article',
-            'data' => new ArticleDetailResource($article)
-        ]);
+        return $this->service->getArticleBySlug($slug);
     }
 }
