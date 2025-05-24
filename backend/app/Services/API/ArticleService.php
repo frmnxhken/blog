@@ -11,7 +11,7 @@ class ArticleService
 {
     public function getArticles()
     {
-        $articles = Post::with('tags')->where('status', 'publish')->paginate(1);
+        $articles = Post::with('tags')->where('status', 'publish')->paginate(9);
         return new ArticleCollection($articles);
     }
 
