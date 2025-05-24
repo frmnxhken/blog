@@ -18,7 +18,7 @@ const ArticleDetailPage = () => {
       {!loading && data && <Meta title={data.title} />}
       <div className="container max-w-[680px] mx-auto px-4 pb-24 mt-12">
         <Header {...data} />
-        <div className="w-full pb-24">
+        <div className="w-full pb-24 editorjs-content">
           {loading ? (
             <Loading />
           ) : (

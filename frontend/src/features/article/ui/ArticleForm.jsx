@@ -50,10 +50,7 @@ const ArticleForm = ({
         ) : (
           <InputImage
             onImageChange={(file) => handleChange("thumbnail", file)}
-            image={
-              formData.thumbnail &&
-              "http://127.0.0.1:8000/" + formData.thumbnail
-            }
+            image={formData.thumbnail && formData.thumbnail}
             feedback={errors?.thumbnail}
           />
         )}
