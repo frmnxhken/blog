@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { useQuery } from "@tanstack/react-query";
 import { getArticleByTag, getArticles } from "@/shared/api/Article";
 
-const useArticleUser = () => {
+const useArticleUser = (keyword = "") => {
   const [tag, setTag] = useState("all");
   const [page, setPage] = useState(1);
 
@@ -12,12 +12,12 @@ const useArticleUser = () => {
 
   const fetchFn = async () => {
     return tag === "all"
-      ? await getArticles(page)
+      ? await getArticles(keyword, page)
       : await getArticleByTag(tag, page);
   };
 
   const { data, isLoading } = useQuery({
-    queryKey: ["articles", tag, page],
+    queryKey: ["articles", tag, keyword, page],
     queryFn: fetchFn,
     keepPreviousData: true,
   });

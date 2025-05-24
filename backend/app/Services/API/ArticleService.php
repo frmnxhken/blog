@@ -9,9 +9,12 @@ use App\Models\Post;
 
 class ArticleService
 {
-    public function getArticles()
+    public function getArticles($key)
     {
-        $articles = Post::with('tags')->where('status', 'publish')->paginate(9);
+        $query = Post::with('tags')->where('status', 'publish');
+        if ($key) $query->where('title', 'like', '%' . $key . '%');
+
+        $articles = $query->paginate(9);
         return new ArticleCollection($articles);
     }
 

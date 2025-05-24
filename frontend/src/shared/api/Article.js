@@ -1,7 +1,7 @@
 import api from "./Api";
 
-export const getArticles = async (page) => {
-  const response = await api.get("/article?page=" + page);
+export const getArticles = async (keyword, page) => {
+  const response = await api.get(`/article?key=${keyword}&page=${page}`);
   return response.data;
 };
 
