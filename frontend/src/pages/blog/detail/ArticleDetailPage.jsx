@@ -4,6 +4,7 @@ import EditorJsRenderer from "editorjs-react-renderer";
 
 import Header from "./ui/Header";
 import Loading from "@/shared/ui/Loading";
+import Meta from "@/shared/ui/Meta";
 
 import { customRenderers } from "@/shared/lib/Renderer";
 import { useArticleUserDetail } from "@/features/article/hooks";
@@ -13,19 +14,22 @@ const ArticleDetailPage = () => {
   const { data, loading } = useArticleUserDetail(slug);
 
   return (
-    <div className="container max-w-[680px] mx-auto px-4 pb-24 mt-12">
-      <Header {...data} />
-      <div className="w-full pb-24">
-        {loading ? (
-          <Loading />
-        ) : (
-          <EditorJsRenderer
-            renderers={customRenderers}
-            data={JSON.parse(data.content)}
-          />
-        )}
+    <>
+      {!loading && data && <Meta title={data.title} />}
+      <div className="container max-w-[680px] mx-auto px-4 pb-24 mt-12">
+        <Header {...data} />
+        <div className="w-full pb-24">
+          {loading ? (
+            <Loading />
+          ) : (
+            <EditorJsRenderer
+              renderers={customRenderers}
+              data={JSON.parse(data.content)}
+            />
+          )}
+        </div>
       </div>
-    </div>
+    </>
   );
 };
 
