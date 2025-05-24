@@ -1,6 +1,5 @@
 import { Authentication, Deauthentication } from "@/features/auth/api";
 import React, { createContext, useContext, useState, useEffect } from "react";
-import { Navigate } from "react-router-dom";
 
 const AuthContext = createContext();
 
@@ -52,7 +51,7 @@ export const AuthProvider = ({ children }) => {
   };
 
   return (
-    <AuthContext.Provider value={{ user, loading, login, logout }}>
+    <AuthContext.Provider value={{ user, token, loading, login, logout }}>
       {children}
     </AuthContext.Provider>
   );

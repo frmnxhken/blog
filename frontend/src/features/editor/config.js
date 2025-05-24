@@ -4,7 +4,7 @@ import List from "@editorjs/list";
 import Quote from "@editorjs/quote";
 import ImageTool from "@editorjs/image";
 
-export const EDITOR_JS_TOOLS = {
+export const EDITOR_JS_TOOLS = (token) => ({
   image: {
     class: ImageTool,
     config: {
@@ -12,7 +12,7 @@ export const EDITOR_JS_TOOLS = {
         byFile: "http://127.0.0.1:8000/api/upload/image",
       },
       additionalRequestHeaders: {
-        Authorization: `Bearer ${localStorage.getItem("token")}`,
+        Authorization: `Bearer ${token}`,
         Accept: "application/json",
       },
     },
@@ -38,4 +38,4 @@ export const EDITOR_JS_TOOLS = {
     class: Quote,
     inlineToolbar: true,
   },
-};
+});

@@ -3,8 +3,6 @@
 namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
-use App\Http\Resources\ArticleCollection;
-use App\Models\Post;
 use App\Services\API\PostTagService;
 
 class PostTagController extends Controller

@@ -5,8 +5,8 @@ namespace App\Http\Controllers\API;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\API\AuthRequest;
 use App\Http\Requests\API\ChangePasswordRequest;
-use App\Http\Requests\API\EditProfileRequest;
 use App\Services\API\UserService;
+use Illuminate\Http\Request;
 
 class UserController extends Controller
 {
@@ -49,7 +49,7 @@ class UserController extends Controller
         return response()->json(['success' => true]);
     }
 
-    public function updateProfile(EditProfileRequest $request)
+    public function updateProfile(Request $request)
     {
         $user = $this->service->updateProfile($request);
         return response()->json($user);

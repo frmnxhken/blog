@@ -26,7 +26,7 @@ class ArticleService
 
     public function getArticleBySlug($slug)
     {
-        $article = Post::with('tags')->where('slug', $slug)->first();
+        $article = Post::with('tags', 'user')->where('slug', $slug)->first();
         return new ArticleDetailResource($article);
     }
 }

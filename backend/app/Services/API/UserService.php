@@ -2,14 +2,13 @@
 
 namespace App\Services\API;
 
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 
 class UserService
 {
-    public function authenticate(Request $request)
+    public function authenticate($request)
     {
         $validation = Validator::make($request->all(), [
             'email' => 'required|email',
@@ -36,7 +35,7 @@ class UserService
         return true;
     }
 
-    public function updatePassword(Request $request)
+    public function updatePassword($request)
     {
         $user = Auth::user();
 
@@ -57,7 +56,7 @@ class UserService
         return ['success' => true];
     }
 
-    public function updateProfile(Request $request)
+    public function updateProfile($request)
     {
         $user = Auth::user();
         $user->update($request->all());

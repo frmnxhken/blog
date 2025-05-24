@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useMutation } from "@tanstack/react-query";
 import { updateProfile } from "../api";
 import { useLocation, useNavigate } from "react-router-dom";
@@ -15,6 +15,18 @@ const useEditProfile = () => {
     twitter: user.twitter,
     youtube: user.youtube,
   });
+
+  useEffect(() => {
+    const newUser = JSON.parse(localStorage.getItem("user"));
+
+    setForm({
+      instagram: newUser.instagram,
+      facebook: newUser.facebook,
+      twitter: newUser.twitter,
+      youtube: newUser.youtube,
+    });
+  }, []);
+
   const [errors, setErrors] = useState({});
 
   const handleInput = (field, value) => {

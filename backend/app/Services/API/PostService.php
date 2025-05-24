@@ -40,6 +40,7 @@ class PostService
             'slug' => Str::slug($data['title']),
             'content' => $data['content'],
             'status' => $data['status'],
+            'user_id' => auth()->id()
         ]);
 
         $this->syncTags($post, $data['tags'] ?? '');

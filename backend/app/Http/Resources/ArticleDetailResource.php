@@ -20,6 +20,7 @@ class ArticleDetailResource extends JsonResource
             'thumbnail' => asset($this->thumbnail),
             'content' => $this->content,
             'date' => $this->created_at->format("Y M d"),
+            'user' => $this->user->makeHidden('id'),
         ];
     }
 }
