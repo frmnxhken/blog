@@ -5,7 +5,7 @@ namespace App\Http\Requests\API;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rule;
 
-class PostRequest extends FormRequest
+class CreatePostRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -22,16 +22,12 @@ class PostRequest extends FormRequest
      */
     public function rules(): array
     {
-        $id = $this->route('post');
-
         return [
-            'title' => [
-                'required',
-                Rule::unique('posts', 'title')->ignore($id),
-            ],
+            'title' => 'required|unique:posts,title',
             'thumbnail' => 'required|image',
             'content' => 'required',
             'status' => 'required',
+            'tags' => 'required'
         ];
     }
 }
